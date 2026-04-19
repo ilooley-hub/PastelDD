@@ -46,8 +46,8 @@ export function Navbar() {
               <PastelLogo size={36} />
             </Link>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex md:items-center md:gap-1">
+            {/* Right side: nav links + CTA */}
+            <div className="hidden md:flex md:items-center md:gap-2">
               {navItems.map((item) => (
                 <Link
                   key={item.label}
@@ -58,13 +58,9 @@ export function Navbar() {
                   <span className="absolute bottom-1 left-4 right-4 h-px bg-accent scale-x-0 transition-transform duration-200 group-hover:scale-x-100" />
                 </Link>
               ))}
-            </div>
-
-            {/* Right side CTA */}
-            <div className="hidden md:flex md:items-center md:gap-4">
               <Link
                 href="#contact"
-                className="group magnetic flex items-center gap-1.5 rounded-full bg-text-primary px-5 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:bg-accent hover:text-white hover:shadow-pastel"
+                className="group magnetic flex items-center gap-1.5 rounded-full bg-text-primary px-5 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:bg-accent hover:text-white hover:shadow-pastel ml-2"
               >
                 Request Demo
                 <IconArrowRight
