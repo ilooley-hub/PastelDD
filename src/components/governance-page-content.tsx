@@ -40,7 +40,7 @@ export function GovernancePageContent() {
             <p className="text-xs font-medium uppercase tracking-[2px] text-accent-deep mb-4">
               Portfolio Governance
             </p>
-            <h1 className="font-heading text-[clamp(2.25rem,5vw,3.5rem)] leading-[1.08] tracking-heading-tight text-white mb-6">
+            <h1 className="font-heading text-[clamp(2.25rem,5vw,3.5rem)] leading-[1.08] tracking-heading-tight text-text-primary mb-6">
               Your portfolio,{" "}
               <em className="text-accent-deep">continuously monitored.</em>
             </h1>
@@ -50,8 +50,8 @@ export function GovernancePageContent() {
               become problems.
             </p>
             <Link
-              href="/contact"
-              className="group inline-flex items-center gap-2 rounded-full border border-pastel-border px-8 py-4 text-base font-medium text-text-secondary transition-all duration-300 hover:border-accent-deep/50 hover:text-white"
+              href="/#contact"
+              className="group magnetic inline-flex items-center gap-2 rounded-full bg-text-primary px-8 py-4 text-base font-medium text-white transition-all duration-300 hover:bg-accent hover:shadow-pastel"
             >
               Learn more
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -75,7 +75,7 @@ export function GovernancePageContent() {
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-pastel-border bg-base mb-6">
                     <pillar.icon className={`h-5 w-5 ${pillar.color}`} />
                   </div>
-                  <h3 className="font-heading text-xl text-white mb-3">
+                  <h3 className="font-heading text-xl text-text-primary mb-3">
                     {pillar.title}
                   </h3>
                   <p className="text-sm leading-relaxed text-text-secondary">

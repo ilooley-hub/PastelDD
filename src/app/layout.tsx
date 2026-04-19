@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
-import { Instrument_Serif, DM_Sans, Geist } from "next/font/google"
+import { Instrument_Serif, DM_Sans } from "next/font/google"
 import "./globals.css"
-import { cn } from "@/lib/utils";
+import { CursorOrb } from "@/components/cursor-orb"
 
 const instrumentSerif = Instrument_Serif({
   weight: "400",
@@ -10,7 +10,11 @@ const instrumentSerif = Instrument_Serif({
   display: "swap",
 })
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'})
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+})
 
 export const metadata: Metadata = {
   title: "Pastel | AI-Powered Due Diligence for Private Equity",
@@ -26,9 +30,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn(instrumentSerif.variable, "font-sans", geist.variable)}
+      className={`${instrumentSerif.variable} ${dmSans.variable}`}
     >
       <body className="font-sans antialiased bg-base text-text-primary">
+        <CursorOrb />
         {children}
       </body>
     </html>

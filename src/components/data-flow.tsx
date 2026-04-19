@@ -1,5 +1,6 @@
 "use client"
 
+import { useRef } from "react"
 import { motion } from "framer-motion"
 import {
   FileText,
@@ -10,7 +11,8 @@ import {
   CheckCircle2,
 } from "lucide-react"
 import { GradientOrbs, GlowDot } from "./visual-effects"
-import { DotGrid, SectionLabel, FlowLine } from "./decorations"
+import { DotGrid, SectionLabel } from "./decorations"
+import { AnimatedBeam } from "./ui/animated-beam"
 
 const ease = [0.25, 0.1, 0.25, 1] as const
 
@@ -38,10 +40,18 @@ const outputs = [
 ]
 
 export function DataFlow() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const inputRef = useRef<HTMLDivElement>(null)
+  const aiRef = useRef<HTMLDivElement>(null)
+  const outputRef = useRef<HTMLDivElement>(null)
+  // Per-document refs for beams
+  const docRefs = useRef<(HTMLDivElement | null)[]>([])
+  const outputRefs = useRef<(HTMLDivElement | null)[]>([])
+
   return (
-    <section className="relative overflow-hidden bg-base py-32 noise">
+    <section className="relative overflow-hidden bg-base py-32 grain">
       <GradientOrbs variant="default" />
-      <DotGrid color="rgba(200, 162, 255, 0.04)" size={40} dotSize={1} />
+      <DotGrid color="rgba(124, 58, 237, 0.06)" size={40} dotSize={1} />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
@@ -53,91 +63,95 @@ export function DataFlow() {
           className="mx-auto max-w-2xl text-center mb-20"
         >
           <SectionLabel>Data Pipeline</SectionLabel>
-          <h2 className="font-heading text-[clamp(2rem,4vw,2.75rem)] leading-tight tracking-heading text-white text-balance">
+          <h2 className="font-heading text-[clamp(2.25rem,4.5vw,3.25rem)] leading-[0.98] tracking-heading-tight text-text-primary text-balance">
             From data room to{" "}
-            <em className="gradient-text">decision-ready.</em>
+            <em className="gradient-text not-italic font-normal italic">
+              decision-ready.
+            </em>
           </h2>
-          <p className="mt-4 text-text-secondary text-base">
+          <p className="mt-6 text-text-secondary text-lg">
             Watch your documents become actionable intelligence in real time.
           </p>
         </motion.div>
 
-        {/* Three-column flow */}
-        <div className="grid lg:grid-cols-[1fr_auto_1fr_auto_1fr] gap-6 items-stretch">
+        {/* Three-column flow with animated beams */}
+        <div
+          ref={containerRef}
+          className="relative grid lg:grid-cols-[1fr_1.1fr_1fr] gap-10 lg:gap-16 items-stretch"
+        >
           {/* Column 1: Input Documents */}
           <motion.div
+            ref={inputRef}
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease }}
-            className="relative rounded-2xl border border-pastel-border bg-surface p-6 shadow-2xl"
+            className="relative z-10 rounded-3xl border border-pastel-border bg-white p-6 shadow-pastel"
           >
             <div className="flex items-center justify-between mb-4">
-              <span className="text-[10px] uppercase tracking-[1.5px] text-text-tertiary">
+              <span className="text-[10px] uppercase tracking-[1.5px] text-text-tertiary font-semibold">
                 Input
               </span>
-              <span className="rounded-full bg-pastel-border/50 px-2 py-0.5 text-[9px] text-text-tertiary">
+              <span className="rounded-full bg-base px-2.5 py-0.5 text-[9px] text-text-tertiary border border-pastel-border font-medium">
                 {documents.length} docs
               </span>
             </div>
-            <h3 className="font-heading text-base text-white mb-4">
+            <h3 className="font-heading text-lg text-text-primary mb-4">
               Data Room
             </h3>
             <div className="space-y-2">
               {documents.map((doc, i) => (
                 <motion.div
                   key={doc.name}
+                  ref={(el) => {
+                    docRefs.current[i] = el
+                  }}
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.2 + i * 0.08, ease }}
-                  className="flex items-center gap-2.5 rounded-lg border border-pastel-border/50 bg-base/50 px-3 py-2 group hover:border-accent/20 transition-colors"
+                  className="flex items-center gap-2.5 rounded-xl border border-pastel-border bg-base px-3 py-2 group hover:border-accent/30 hover:bg-white transition-colors"
                 >
                   <div className="flex h-7 w-7 items-center justify-center rounded-md bg-accent/10 border border-accent/20 shrink-0">
                     <doc.icon className="h-3 w-3 text-accent" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-[11px] text-white truncate">
+                    <p className="text-[11px] text-text-primary truncate font-medium">
                       {doc.name}
                     </p>
                     <p className="text-[9px] text-text-tertiary uppercase tracking-wider">
                       {doc.type}
                     </p>
                   </div>
-                  <CheckCircle2 className="h-3 w-3 text-green-400 shrink-0" />
+                  <CheckCircle2 className="h-3 w-3 text-emerald-600 shrink-0" />
                 </motion.div>
               ))}
             </div>
           </motion.div>
 
-          {/* Connector 1 */}
-          <div className="hidden lg:flex flex-col items-center justify-center w-16">
-            <FlowLine />
-          </div>
-
-          {/* Column 2: AI Processing */}
+          {/* Column 2: AI Brain */}
           <motion.div
+            ref={aiRef}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2, ease }}
-            className="relative rounded-2xl border border-accent/20 bg-surface p-6 shadow-[0_0_60px_rgba(200,162,255,0.1)]"
+            className="relative z-10 rounded-3xl border border-accent/20 bg-white p-6 shadow-pastel-lg overflow-hidden"
           >
-            {/* Pulsing glow background */}
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent/5 via-transparent to-accent-deep/5 animate-pulse-glow" />
+            {/* Inner gradient glow */}
+            <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-accent/[0.06] via-transparent to-[#FFB8D9]/[0.08] animate-pulse-glow" />
 
             <div className="relative">
               <div className="flex items-center justify-between mb-4">
-                <span className="text-[10px] uppercase tracking-[1.5px] text-accent">
+                <span className="text-[10px] uppercase tracking-[1.5px] text-accent font-semibold">
                   Processing
                 </span>
                 <GlowDot color="accent" size="sm" />
               </div>
 
-              {/* Center: Brain icon with rotating ring */}
+              {/* Brain core with rotating rings */}
               <div className="flex flex-col items-center my-6">
                 <div className="relative">
-                  {/* Rotating ring */}
                   <motion.div
                     animate={{ rotate: 360 }}
                     transition={{
@@ -154,17 +168,17 @@ export function DataFlow() {
                       repeat: Infinity,
                       ease: "linear",
                     }}
-                    className="absolute -inset-3 rounded-full border border-dashed border-accent-deep/20"
+                    className="absolute -inset-3 rounded-full border border-dashed border-accent/20"
                   />
                   {/* Core */}
-                  <div className="relative h-16 w-16 rounded-full bg-gradient-to-br from-accent to-accent-deep flex items-center justify-center shadow-[0_0_40px_rgba(200,162,255,0.4)]">
-                    <Cpu className="h-7 w-7 text-white" />
+                  <div className="relative h-20 w-20 rounded-full bg-gradient-to-br from-[#C8A2FF] via-[#7C3AED] to-[#5B21B6] flex items-center justify-center shadow-[0_0_50px_rgba(124,58,237,0.45)]">
+                    <Cpu className="h-9 w-9 text-white" />
                   </div>
                 </div>
-                <h3 className="font-heading text-base text-white mt-4">
+                <h3 className="font-heading text-lg text-text-primary mt-5">
                   Multi-Agent AI
                 </h3>
-                <p className="text-[10px] text-text-tertiary mt-1">
+                <p className="text-[11px] text-text-tertiary mt-1">
                   4 agents working in parallel
                 </p>
               </div>
@@ -178,7 +192,7 @@ export function DataFlow() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.5 + i * 0.1 }}
-                    className="flex items-center gap-2 rounded-md bg-base/40 px-2.5 py-1.5"
+                    className="flex items-center gap-2 rounded-md bg-base/60 px-2.5 py-1.5 border border-pastel-border"
                   >
                     <motion.div
                       animate={{ opacity: [0.3, 1, 0.3] }}
@@ -199,28 +213,24 @@ export function DataFlow() {
             </div>
           </motion.div>
 
-          {/* Connector 2 */}
-          <div className="hidden lg:flex flex-col items-center justify-center w-16">
-            <FlowLine />
-          </div>
-
           {/* Column 3: Output Brief */}
           <motion.div
+            ref={outputRef}
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.4, ease }}
-            className="relative rounded-2xl border border-pastel-border bg-surface p-6 shadow-2xl"
+            className="relative z-10 rounded-3xl border border-pastel-border bg-white p-6 shadow-pastel"
           >
             <div className="flex items-center justify-between mb-4">
-              <span className="text-[10px] uppercase tracking-[1.5px] text-accent">
+              <span className="text-[10px] uppercase tracking-[1.5px] text-accent font-semibold">
                 Output
               </span>
-              <span className="rounded-full bg-green-400/10 px-2 py-0.5 text-[9px] text-green-400 border border-green-400/20">
+              <span className="rounded-full bg-emerald-50 px-2.5 py-0.5 text-[9px] text-emerald-700 border border-emerald-200 font-medium">
                 Ready
               </span>
             </div>
-            <h3 className="font-heading text-base text-white mb-1">
+            <h3 className="font-heading text-lg text-text-primary mb-1">
               DD Brief
             </h3>
             <p className="text-[10px] text-text-tertiary mb-4">
@@ -228,12 +238,12 @@ export function DataFlow() {
             </p>
 
             {/* Score */}
-            <div className="rounded-lg border border-accent/20 bg-accent/5 p-3 mb-3">
+            <div className="rounded-xl border border-accent/20 bg-accent/[0.04] p-3 mb-3">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-[9px] uppercase tracking-wider text-text-tertiary">
+                <span className="text-[9px] uppercase tracking-wider text-text-tertiary font-semibold">
                   Overall Risk
                 </span>
-                <span className="text-[10px] text-amber-400 font-medium">
+                <span className="text-[10px] text-amber-600 font-semibold">
                   Medium
                 </span>
               </div>
@@ -243,7 +253,7 @@ export function DataFlow() {
                   whileInView={{ width: "42%" }}
                   viewport={{ once: true }}
                   transition={{ duration: 1.5, delay: 0.8, ease }}
-                  className="h-full rounded-full bg-gradient-to-r from-green-400 via-amber-400 to-red-400"
+                  className="h-full rounded-full bg-gradient-to-r from-emerald-500 via-amber-500 to-red-500"
                 />
               </div>
             </div>
@@ -253,25 +263,62 @@ export function DataFlow() {
               {outputs.map((out, i) => (
                 <motion.div
                   key={out.label}
+                  ref={(el) => {
+                    outputRefs.current[i] = el
+                  }}
                   initial={{ opacity: 0, y: 5 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.6 + i * 0.08 }}
-                  className="flex items-center gap-2 rounded-lg border border-pastel-border/50 bg-base/50 px-2.5 py-1.5"
+                  className="flex items-center gap-2 rounded-xl border border-pastel-border bg-base px-2.5 py-1.5"
                 >
                   <span
-                    className={`h-1 w-1 rounded-full ${
-                      out.status === "good" ? "bg-green-400" : "bg-amber-400"
+                    className={`h-1.5 w-1.5 rounded-full ${
+                      out.status === "good"
+                        ? "bg-emerald-500"
+                        : "bg-amber-500"
                     }`}
                   />
                   <span className="text-[10px] text-text-secondary flex-1">
                     {out.label}
                   </span>
-                  <Sparkles className="h-2.5 w-2.5 text-accent/60" />
+                  <Sparkles className="h-2.5 w-2.5 text-accent/70" />
                 </motion.div>
               ))}
             </div>
           </motion.div>
+
+          {/* Animated beams: documents → AI brain → outputs */}
+          {documents.map((_, i) => (
+            <AnimatedBeam
+              key={`in-${i}`}
+              containerRef={containerRef}
+              fromRef={{ current: docRefs.current[i] }}
+              toRef={aiRef}
+              curvature={-30 + i * 10}
+              gradientStartColor="#8DD0FF"
+              gradientStopColor="#C8A2FF"
+              pathColor="#C8A2FF"
+              pathOpacity={0.15}
+              duration={4}
+              delay={i * 0.4}
+            />
+          ))}
+          {outputs.map((_, i) => (
+            <AnimatedBeam
+              key={`out-${i}`}
+              containerRef={containerRef}
+              fromRef={aiRef}
+              toRef={{ current: outputRefs.current[i] }}
+              curvature={-20 + i * 8}
+              gradientStartColor="#C8A2FF"
+              gradientStopColor="#FFB8D9"
+              pathColor="#FFB8D9"
+              pathOpacity={0.15}
+              duration={4}
+              delay={2 + i * 0.4}
+            />
+          ))}
         </div>
       </div>
     </section>

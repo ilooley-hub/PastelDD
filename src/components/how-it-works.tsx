@@ -6,6 +6,7 @@ import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import { GradientOrbs } from "./visual-effects"
 import { DotGrid, SectionLabel } from "./decorations"
+import { AuroraText } from "./ui/aurora-text"
 
 const ease = [0.25, 0.1, 0.25, 1] as const
 
@@ -56,7 +57,7 @@ function UploadVisual() {
               <Upload className="h-3 w-3 text-accent" />
             </div>
             <span className="text-text-secondary truncate">{file}</span>
-            <span className="ml-auto text-green-400/80 text-[10px]">Done</span>
+            <span className="ml-auto text-emerald-600/80 text-[10px]">Done</span>
           </div>
         )
       )}
@@ -127,7 +128,7 @@ export function HowItWorks() {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section className="relative overflow-hidden bg-base py-32 noise">
+    <section className="relative overflow-hidden bg-base py-32 grain">
       <GradientOrbs variant="default" />
       <DotGrid color="rgba(200, 162, 255, 0.04)" size={36} dotSize={1} />
 
@@ -141,9 +142,16 @@ export function HowItWorks() {
           className="mx-auto max-w-2xl text-center mb-20"
         >
           <SectionLabel>How it works</SectionLabel>
-          <h2 className="font-heading text-[clamp(2rem,4vw,2.75rem)] leading-tight tracking-heading text-white text-balance">
+          <h2 className="font-heading text-[clamp(2.25rem,4.5vw,3.25rem)] leading-[0.98] tracking-heading-tight text-text-primary text-balance">
             Three steps to a{" "}
-            <em className="gradient-text">complete brief.</em>
+            <em className="not-italic font-normal italic">
+              <AuroraText
+                colors={["#8DD0FF", "#C8A2FF", "#FFB8D9", "#FFCFA0", "#8DD0FF"]}
+                speed={1.2}
+              >
+                complete brief.
+              </AuroraText>
+            </em>
           </h2>
           <p className="mt-4 text-text-secondary text-base">
             From data room to decision-ready in 48 hours.
@@ -165,7 +173,7 @@ export function HowItWorks() {
 
               <div className="relative h-full rounded-2xl border border-pastel-border bg-surface p-7 transition-all duration-500 group-hover:border-pastel-border-hover group-hover:bg-surface-2">
                 {/* Large faded number */}
-                <span className="pointer-events-none absolute right-4 top-4 font-heading text-[80px] leading-none text-white/[0.03] select-none">
+                <span className="pointer-events-none absolute right-4 top-4 font-heading text-[110px] leading-none text-accent/[0.07] select-none">
                   {step.number}
                 </span>
 
@@ -182,7 +190,7 @@ export function HowItWorks() {
                   </div>
 
                   {/* Text */}
-                  <h3 className="font-heading text-xl text-white mb-2">
+                  <h3 className="font-heading text-xl text-text-primary mb-2">
                     {step.title}
                   </h3>
                   <p className="text-[13px] leading-relaxed text-text-secondary">

@@ -74,7 +74,7 @@ export function ProductBento() {
   const isInView = useInView(ref, { once: true, margin: "-80px" })
 
   return (
-    <section className="relative overflow-hidden bg-base py-32 noise">
+    <section className="relative overflow-hidden bg-base py-32 grain">
       <GradientOrbs variant="purple" />
       <DotGrid color="rgba(200, 162, 255, 0.04)" size={36} dotSize={1} />
 
@@ -88,7 +88,7 @@ export function ProductBento() {
           className="mx-auto max-w-2xl text-center mb-16"
         >
           <SectionLabel>The Product</SectionLabel>
-          <h2 className="font-heading text-[clamp(2rem,4vw,2.75rem)] leading-tight tracking-heading text-white text-balance">
+          <h2 className="font-heading text-[clamp(2rem,4vw,2.75rem)] leading-tight tracking-heading text-text-primary text-balance">
             A brief that <em className="gradient-text">thinks</em> with you.
           </h2>
           <p className="mt-4 text-text-secondary text-base">
@@ -116,7 +116,7 @@ export function ProductBento() {
                   Speed
                 </span>
               </div>
-              <h3 className="mt-4 font-heading text-[22px] text-white">
+              <h3 className="mt-4 font-heading text-[22px] text-text-primary">
                 48-hour turnaround
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-text-secondary max-w-md">
@@ -152,31 +152,27 @@ export function ProductBento() {
                   </div>
                 </div>
 
-                {/* Live brief metrics */}
+                {/* Target metrics */}
                 <div className="pt-4 mt-2 border-t border-pastel-border/40">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-[10px] uppercase tracking-wider text-text-tertiary">
-                      Active brief generation
-                    </span>
-                    <span className="flex items-center gap-1.5 text-[10px] text-green-400">
-                      <span className="h-1 w-1 rounded-full bg-green-400 animate-pulse" />
-                      Live
+                      Target performance
                     </span>
                   </div>
                   <div className="grid grid-cols-2 gap-2">
                     <MetricCard
-                      label="Briefs (24h)"
-                      value="14"
-                      delta="+22%"
+                      label="Target time"
+                      value="48h"
+                      delta="vs 3 wks"
                       positive
-                      sparkline={[8, 10, 9, 12, 11, 13, 14]}
+                      sparkline={[52, 50, 48, 49, 47, 46, 48]}
                     />
                     <MetricCard
-                      label="Avg time"
-                      value="46.2h"
-                      delta="-3%"
+                      label="Coverage"
+                      value="100%"
+                      delta="Traced"
                       positive
-                      sparkline={[52, 50, 48, 49, 47, 46, 46.2]}
+                      sparkline={[92, 94, 96, 97, 98, 99, 100]}
                     />
                   </div>
                 </div>
@@ -201,7 +197,7 @@ export function ProductBento() {
                   Traceability
                 </span>
               </div>
-              <h3 className="mt-4 font-heading text-[22px] text-white">
+              <h3 className="mt-4 font-heading text-[22px] text-text-primary">
                 Every claim has a source
               </h3>
               <p className="mt-3 text-[13px] leading-relaxed text-text-secondary">
@@ -229,7 +225,7 @@ export function ProductBento() {
                   Intelligence
                 </span>
               </div>
-              <h3 className="mt-4 font-heading text-[22px] text-white">
+              <h3 className="mt-4 font-heading text-[22px] text-text-primary">
                 Queryable outputs
               </h3>
               <p className="mt-3 text-[13px] leading-relaxed text-text-secondary">
@@ -256,7 +252,7 @@ export function ProductBento() {
                 <span className="inline-flex items-center gap-2 rounded-full bg-text-tertiary/10 px-3 py-1 text-[11px] font-medium uppercase tracking-[1.5px] text-text-tertiary border border-text-tertiary/20 mb-4">
                   Beyond the deal
                 </span>
-                <h3 className="font-heading text-[22px] text-white mb-3">
+                <h3 className="font-heading text-[22px] text-text-primary mb-3">
                   Ongoing financial governance
                 </h3>
                 <p className="text-sm leading-relaxed text-text-secondary max-w-2xl">
@@ -273,13 +269,13 @@ export function ProductBento() {
                     <span className="text-[9px] uppercase tracking-wider text-text-tertiary">
                       Revenue
                     </span>
-                    <TrendingUp className="h-3 w-3 text-green-400" />
+                    <TrendingUp className="h-3 w-3 text-emerald-600" />
                   </div>
-                  <p className="font-heading text-lg text-green-400">+12.4%</p>
+                  <p className="font-heading text-lg text-emerald-600">+12.4%</p>
                   <div className="mt-1 -mx-1">
                     <Sparkline
                       data={[20, 22, 25, 24, 28, 32, 30, 35, 38]}
-                      color="#4ADE80"
+                      color="#10B981"
                       width={110}
                       height={24}
                       animate={false}
@@ -291,13 +287,13 @@ export function ProductBento() {
                     <span className="text-[9px] uppercase tracking-wider text-text-tertiary">
                       Margin
                     </span>
-                    <TrendingDown className="h-3 w-3 text-amber-400" />
+                    <TrendingDown className="h-3 w-3 text-amber-600" />
                   </div>
-                  <p className="font-heading text-lg text-amber-400">-0.3%</p>
+                  <p className="font-heading text-lg text-amber-600">-0.3%</p>
                   <div className="mt-1 -mx-1">
                     <Sparkline
                       data={[8.7, 8.6, 8.5, 8.6, 8.4, 8.5, 8.4]}
-                      color="#FBBF24"
+                      color="#F59E0B"
                       width={110}
                       height={24}
                       animate={false}
@@ -309,13 +305,13 @@ export function ProductBento() {
                     <span className="text-[9px] uppercase tracking-wider text-text-tertiary">
                       Cash
                     </span>
-                    <TrendingUp className="h-3 w-3 text-green-400" />
+                    <TrendingUp className="h-3 w-3 text-emerald-600" />
                   </div>
-                  <p className="font-heading text-lg text-green-400">+8.1%</p>
+                  <p className="font-heading text-lg text-emerald-600">+8.1%</p>
                   <div className="mt-1 -mx-1">
                     <Sparkline
                       data={[12, 14, 13, 15, 16, 18, 17, 19, 20]}
-                      color="#4ADE80"
+                      color="#10B981"
                       width={110}
                       height={24}
                       animate={false}

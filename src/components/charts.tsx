@@ -9,7 +9,7 @@ const ease = [0.25, 0.1, 0.25, 1] as const
 ============================================================ */
 export function Sparkline({
   data = [12, 18, 14, 22, 19, 28, 24, 32, 38, 35, 44, 52],
-  color = "#C8A2FF",
+  color = "#7C3AED",
   width = 200,
   height = 60,
   fill = true,
@@ -109,7 +109,7 @@ export function Donut({
   value = 87,
   size = 100,
   strokeWidth = 8,
-  color = "#C8A2FF",
+  color = "#7C3AED",
   label,
 }: {
   value?: number
@@ -121,13 +121,14 @@ export function Donut({
   const radius = (size - strokeWidth) / 2
   const circumference = 2 * Math.PI * radius
   const offset = circumference - (value / 100) * circumference
+  const id = `donut-${Math.random().toString(36).slice(2, 8)}`
 
   return (
     <div className="relative inline-flex items-center justify-center">
       <svg width={size} height={size} className="-rotate-90">
         <defs>
-          <linearGradient id="donut-grad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#8B5CF6" />
+          <linearGradient id={id} x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#5B21B6" />
             <stop offset="100%" stopColor={color} />
           </linearGradient>
         </defs>
@@ -136,7 +137,7 @@ export function Donut({
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke="#1A1A28"
+          stroke="#E8E5DC"
           strokeWidth={strokeWidth}
         />
         <motion.circle
@@ -144,7 +145,7 @@ export function Donut({
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke="url(#donut-grad)"
+          stroke={`url(#${id})`}
           strokeWidth={strokeWidth}
           strokeDasharray={circumference}
           strokeLinecap="round"
@@ -155,7 +156,7 @@ export function Donut({
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="font-heading text-lg text-white leading-none">
+        <span className="font-heading text-lg text-text-primary leading-none">
           {value}
           <span className="text-sm">%</span>
         </span>
@@ -226,7 +227,7 @@ export function RiskGauge({
 
   // Color based on value
   const color =
-    value < 33 ? "#4ADE80" : value < 66 ? "#FBBF24" : "#EF4444"
+    value < 33 ? "#10B981" : value < 66 ? "#F59E0B" : "#EF4444"
 
   const offset = semi - (value / 100) * semi
 
@@ -236,7 +237,7 @@ export function RiskGauge({
         <path
           d={`M ${strokeWidth / 2} ${cy} A ${radius} ${radius} 0 0 1 ${size - strokeWidth / 2} ${cy}`}
           fill="none"
-          stroke="#1A1A28"
+          stroke="#E8E5DC"
           strokeWidth={strokeWidth}
           strokeLinecap="round"
         />
@@ -255,7 +256,7 @@ export function RiskGauge({
         />
       </svg>
       <div className="absolute top-[55%] left-1/2 -translate-x-1/2 text-center">
-        <span className="font-heading text-2xl text-white">{value}</span>
+        <span className="font-heading text-2xl text-text-primary">{value}</span>
         <p className="text-[10px] text-text-tertiary uppercase tracking-wider mt-0.5">
           {label}
         </p>
@@ -283,25 +284,25 @@ export function MetricCard({
   return (
     <div className="rounded-xl border border-pastel-border bg-base/50 p-4">
       <div className="flex items-center justify-between mb-2">
-        <span className="text-[10px] text-text-tertiary uppercase tracking-[1.5px]">
+        <span className="text-[10px] text-text-tertiary uppercase tracking-[1.5px] font-medium">
           {label}
         </span>
         {delta && (
           <span
             className={`text-[10px] font-medium ${
-              positive ? "text-green-400" : "text-red-400"
+              positive ? "text-emerald-600" : "text-red-500"
             }`}
           >
             {positive ? "↑" : "↓"} {delta}
           </span>
         )}
       </div>
-      <p className="font-heading text-xl text-white">{value}</p>
+      <p className="font-heading text-xl text-text-primary">{value}</p>
       {sparkline && (
         <div className="mt-2">
           <Sparkline
             data={sparkline}
-            color={positive ? "#4ADE80" : "#EF4444"}
+            color={positive ? "#10B981" : "#EF4444"}
             width={120}
             height={28}
             fill={false}
