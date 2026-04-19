@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { Check, X, Clock, DollarSign, FileSearch, Users } from "lucide-react"
+import { Check, Clock, DollarSign, FileSearch, Users } from "lucide-react"
 import { GradientOrbs } from "./visual-effects"
 import { DotGrid, SectionLabel } from "./decorations"
 

@@ -9,9 +9,6 @@ const UL = (props: React.HTMLAttributes<HTMLUListElement>) => (
     className="list-disc pl-5 space-y-1.5 marker:text-accent/60"
   />
 )
-const Strong = (props: React.HTMLAttributes<HTMLSpanElement>) => (
-  <span {...props} className="text-text-primary font-medium" />
-)
 
 const sections: LegalSection[] = [
   {
