@@ -14,7 +14,7 @@ const ease = [0.25, 0.1, 0.25, 1] as const
 export function Hero() {
   return (
     <section className="relative min-h-screen overflow-hidden bg-base grain pt-28">
-      {/* Massive ambient orb behind the hero — the brand element */}
+      {/* Massive ambient orb behind the hero - the brand element */}
       <div className="pointer-events-none absolute inset-0">
         <div
           className="absolute -top-40 -left-40 w-[820px] h-[820px] animate-float-slower"
@@ -167,7 +167,7 @@ export function Hero() {
 
           {/* Right column - DD Brief Mockup with orbiting orb cluster */}
           <div className="relative lg:pl-4 hidden lg:block">
-            {/* Orbiting orb cluster — top-left */}
+            {/* Orbiting orb cluster - top-left */}
             <motion.div
               initial={{ opacity: 0, scale: 0.6 }}
               animate={{ opacity: 1, scale: 1 }}

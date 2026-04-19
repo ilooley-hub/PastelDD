@@ -1,7 +1,7 @@
 "use client"
 
 /**
- * The Pastel logo — uses /logo.svg with the wordmark.
+ * The Pastel logo - uses /logo.svg with the wordmark.
  */
 
 export function PastelOrb({

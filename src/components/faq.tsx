@@ -27,7 +27,7 @@ const faqs: { question: string; answer: string }[] = [
   {
     question: "Does Pastel replace my deal team?",
     answer:
-      "No — Pastel augments your team. Think of it as giving every analyst the bandwidth of a full diligence shop. Your team still makes the investment decisions; Pastel handles the time-intensive document analysis and structuring so they can focus on judgment and strategy.",
+      "No. Pastel augments your team. Think of it as giving every analyst the bandwidth of a full diligence shop. Your team still makes the investment decisions; Pastel handles the time-intensive document analysis and structuring so they can focus on judgment and strategy.",
   },
   {
     question: "What does a Pastel brief cover?",
@@ -42,7 +42,7 @@ const faqs: { question: string; answer: string }[] = [
   {
     question: "Can I ask follow-up questions about the brief?",
     answer:
-      "Yes. Every Pastel brief is fully queryable. Ask questions in plain language — \"What's the customer concentration risk?\" or \"Show me the EBITDA bridge\" — and get sourced answers instantly. It's like having the analyst who wrote the brief available 24/7.",
+      "Yes. Every Pastel brief is fully queryable. Ask questions in plain language like \"What's the customer concentration risk?\" or \"Show me the EBITDA bridge\", and get sourced answers instantly. It's like having the analyst who wrote the brief available 24/7.",
   },
 ]
 

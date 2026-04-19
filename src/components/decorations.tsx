@@ -212,7 +212,7 @@ export function ScanLines({ className = "" }: { className?: string }) {
   )
 }
 
-/* Pastel signature mark — kept for compatibility (uses orb internally now) */
+/* Pastel signature mark - kept for compatibility (uses orb internally now) */
 export function PastelMark({
   size = 32,
   className = "",

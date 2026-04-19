@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 
-/** Animated gradient orbs for section backgrounds — light theme */
+/** Animated gradient orbs for section backgrounds - light theme */
 export function GradientOrbs({
   variant = "default",
 }: {
@@ -94,7 +94,7 @@ export function GradientOrbs({
   )
 }
 
-/** Floating badge — light theme */
+/** Floating badge - light theme */
 export function FloatingBadge({
   children,
   className = "",

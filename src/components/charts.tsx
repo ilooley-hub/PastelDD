@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 const ease = [0.25, 0.1, 0.25, 1] as const
 
 /* ============================================================
-   Sparkline — small line chart with glow
+   Sparkline - small line chart with glow
 ============================================================ */
 export function Sparkline({
   data = [12, 18, 14, 22, 19, 28, 24, 32, 38, 35, 44, 52],
@@ -210,7 +210,7 @@ export function BarChart({
 }
 
 /* ============================================================
-   Risk Gauge — semicircle
+   Risk Gauge - semicircle
 ============================================================ */
 export function RiskGauge({
   value = 35,

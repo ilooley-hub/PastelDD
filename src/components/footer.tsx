@@ -64,7 +64,7 @@ export function Footer() {
             <ul className="space-y-3.5">
               <li>
                 <Link
-                  href="#"
+                  href="/privacy"
                   className="text-sm text-text-secondary transition-colors hover:text-text-primary"
                 >
                   Privacy
@@ -72,7 +72,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/terms"
                   className="text-sm text-text-secondary transition-colors hover:text-text-primary"
                 >
                   Terms
@@ -80,7 +80,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/security"
                   className="text-sm text-text-secondary transition-colors hover:text-text-primary"
                 >
                   Security

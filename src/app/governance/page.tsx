@@ -4,9 +4,9 @@ import { Footer } from "@/components/footer"
 import { GovernancePageContent } from "@/components/governance-page-content"
 
 export const metadata: Metadata = {
-  title: "Financial Governance & Monitoring | Pastel",
+  title: "Portfolio Governance | Pastel",
   description:
-    "Continuous AI-powered financial auditing and operational monitoring for private equity portfolio companies.",
+    "Continuous AI-powered financial auditing, operational monitoring, and on-demand deep dives for private equity portfolio companies. Real-time signals, weekly digests, and source-traced alerts.",
 }
 
 export default function GovernancePage() {

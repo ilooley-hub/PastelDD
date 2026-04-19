@@ -83,9 +83,9 @@ function OverviewPanel() {
         </p>
         {[
           "Strong revenue growth trajectory with 12.4% 3Y CAGR",
-          "Customer concentration warrants monitoring — top 3 at 42%",
+          "Customer concentration warrants monitoring: top 3 at 42%",
           "Working capital cycle improved 18 days year-over-year",
-          "Net debt / EBITDA at 2.1x — within acceptable range",
+          "Net debt / EBITDA at 2.1x: within acceptable range",
         ].map((item, i) => (
           <div
             key={i}
@@ -264,7 +264,7 @@ function OperationalPanel() {
           Key Findings
         </p>
         {[
-          { text: "Key person dependency on CTO — no succession plan", severity: "amber", page: "p.58" },
+          { text: "Key person dependency on CTO: no succession plan", severity: "amber", page: "p.58" },
           { text: "3 vendor contracts expire within 90 days", severity: "amber", page: "p.63" },
           { text: "Engineering velocity above industry median", severity: "green", page: "p.71" },
         ].map((f, i) => (
@@ -354,7 +354,7 @@ function RiskScorePanel() {
         </p>
         {[
           { text: "Customer concentration above 40% threshold", severity: "amber", page: "p.24" },
-          { text: "Key person risk — CTO has no deputy", severity: "amber", page: "p.58" },
+          { text: "Key person risk: CTO has no deputy", severity: "amber", page: "p.58" },
           { text: "3 vendor contracts nearing expiry", severity: "amber", page: "p.63" },
           { text: "Debt covenants within 15% of trigger", severity: "amber", page: "p.34" },
         ].map((f, i) => (
@@ -452,7 +452,7 @@ const panelComponents: Record<TabLabel, React.FC> = {
 }
 
 /**
- * The signature DD Brief dashboard mockup — light theme, interactive tabs.
+ * The signature DD Brief dashboard mockup - light theme, interactive tabs.
  */
 export function BriefMockup() {
   const [activeTab, setActiveTab] = useState<TabLabel>("Financial")
@@ -580,7 +580,7 @@ export function BriefMockup() {
             </div>
           </div>
 
-          {/* Main content — animated panel swap */}
+          {/* Main content - animated panel swap */}
           <div className="p-5 min-w-0 bg-white overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.div
@@ -594,7 +594,7 @@ export function BriefMockup() {
               </motion.div>
             </AnimatePresence>
 
-            {/* Query bar — always visible */}
+            {/* Query bar - always visible */}
             <div className="flex items-center gap-2 rounded-xl border border-accent/25 bg-accent/[0.04] px-3 py-2.5 mt-4">
               <IconSearch size={12} className="text-accent/80" />
               <span className="text-[11px] text-text-tertiary">

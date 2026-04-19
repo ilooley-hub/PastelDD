@@ -67,7 +67,7 @@
     text-wrap: balance;
   }
 
-  /* Section divider — soft warm gradient line */
+  /* Section divider - soft warm gradient line */
   .section-divider {
     height: 1px;
     width: 100%;
@@ -127,7 +127,7 @@
     mix-blend-mode: multiply;
   }
 
-  /* Pastel gradient text — the signature element */
+  /* Pastel gradient text - the signature element */
   .gradient-text {
     background: linear-gradient(
       120deg,
@@ -151,7 +151,7 @@
     color: transparent;
   }
 
-  /* Glow card — soft pastel border-gradient on hover */
+  /* Glow card - soft pastel border-gradient on hover */
   .glow-card {
     position: relative;
     overflow: hidden;
@@ -214,7 +214,7 @@
     transform: translateY(-2px);
   }
 
-  /* Section recipe — warm light bg with subtle grain */
+  /* Section recipe - warm light bg with subtle grain */
   .section {
     position: relative;
     background-color: #FAFAF7;
@@ -230,7 +230,7 @@
       0 4px 16px -8px rgba(20, 20, 28, 0.05);
   }
 
-  /* Pastel shadow — signature lavender lift */
+  /* Pastel shadow - signature lavender lift */
   .shadow-pastel {
     box-shadow:
       0 1px 0 rgba(20, 20, 28, 0.02),
