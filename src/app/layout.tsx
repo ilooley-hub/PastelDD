@@ -4,7 +4,7 @@ import Script from "next/script"
 import "./globals.css"
 import { CursorOrb } from "@/components/cursor-orb"
 
-const GA_ID = "G-XHFB6X4VGQ"
+const GTM_ID = "GTM-NQ9S6W79"
 
 const instrumentSerif = Instrument_Serif({
   weight: "400",
@@ -35,21 +35,28 @@ export default function RootLayout({
       lang="en"
       className={`${instrumentSerif.variable} ${dmSans.variable}`}
     >
-      <body className="font-sans antialiased bg-base text-text-primary">
-        <CursorOrb />
-        {children}
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-          strategy="afterInteractive"
-        />
-        <Script id="ga-init" strategy="afterInteractive">
+      <head>
+        <Script id="gtm" strategy="afterInteractive">
           {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_ID}');
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','${GTM_ID}');
           `}
         </Script>
+      </head>
+      <body className="font-sans antialiased bg-base text-text-primary">
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
+        <CursorOrb />
+        {children}
       </body>
     </html>
   )
