@@ -1,7 +1,10 @@
 import type { Metadata } from "next"
 import { Instrument_Serif, DM_Sans } from "next/font/google"
+import Script from "next/script"
 import "./globals.css"
 import { CursorOrb } from "@/components/cursor-orb"
+
+const GA_ID = "G-XHFB6X4VGQ"
 
 const instrumentSerif = Instrument_Serif({
   weight: "400",
@@ -35,6 +38,18 @@ export default function RootLayout({
       <body className="font-sans antialiased bg-base text-text-primary">
         <CursorOrb />
         {children}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}');
+          `}
+        </Script>
       </body>
     </html>
   )
