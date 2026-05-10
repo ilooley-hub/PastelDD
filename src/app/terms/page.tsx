@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
+import { Nav } from "@/components/layout/Nav"
+import { Footer } from "@/components/layout/Footer"
 import { TermsPageContent } from "@/components/terms-page-content"
 
 export const metadata: Metadata = {
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <>
-      <Navbar />
+      <Nav />
       <TermsPageContent />
       <Footer />
     </>

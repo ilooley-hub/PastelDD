@@ -1,39 +1,60 @@
 import type { Metadata } from "next"
-import { Instrument_Serif, DM_Sans } from "next/font/google"
+import { Instrument_Serif, Instrument_Sans, Source_Serif_4, JetBrains_Mono } from "next/font/google"
 import Script from "next/script"
+import { Analytics } from "@vercel/analytics/react"
 import "./globals.css"
-import { CursorOrb } from "@/components/cursor-orb"
 
 const GTM_ID = "GTM-NQ9S6W79"
 
-const instrumentSerif = Instrument_Serif({
-  weight: "400",
+const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
-  variable: "--font-heading",
+  weight: ["500", "600", "700", "800"],
+  variable: "--font-display",
   display: "swap",
 })
 
-const dmSans = DM_Sans({
+const instrumentSerif = Instrument_Serif({
+  weight: "400",
+  style: ["normal", "italic"],
   subsets: ["latin"],
+  variable: "--font-serif",
+  display: "swap",
+})
+
+const instrumentSans = Instrument_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-sans",
   display: "swap",
 })
 
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono",
+  display: "swap",
+})
+
 export const metadata: Metadata = {
-  title: "Pastel | AI-Powered Due Diligence for Private Equity",
+  title: "Pastel · Organisational Truth for Deal Teams",
   description:
-    "Comprehensive financial and operational DD briefs in 48 hours. Fully queryable, source-traceable, built for PE firms and family offices.",
+    "Pastel builds the ontology. Ingest your VDR, financial data, and contracts. Get a cited brief in 48 hours.",
+  openGraph: {
+    title: "Pastel · Organisational Truth for Deal Teams",
+    description:
+      "Pastel builds the ontology. Ingest your VDR, financial data, and contracts. Get a cited brief in 48 hours.",
+    images: ["/og.png"],
+  },
 }
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="en"
-      className={`${instrumentSerif.variable} ${dmSans.variable}`}
+      data-theme="light"
+      className={`${sourceSerif.variable} ${instrumentSerif.variable} ${instrumentSans.variable} ${jetBrainsMono.variable}`}
     >
       <head>
         <Script id="gtm" strategy="afterInteractive">
@@ -46,7 +67,7 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className="font-sans antialiased bg-base text-text-primary">
+      <body className="font-sans antialiased bg-base text-fg-1">
         <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
@@ -55,8 +76,8 @@ export default function RootLayout({
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
-        <CursorOrb />
         {children}
+        <Analytics />
       </body>
     </html>
   )

@@ -1,40 +1,40 @@
-import { Navbar } from "@/components/navbar"
-import { Hero } from "@/components/hero"
-import { TrustBar } from "@/components/trust-bar"
-import { Divider } from "@/components/divider"
-import { StatsRow } from "@/components/stats-row"
-import { BriefSections } from "@/components/brief-sections"
-import { DataFlow } from "@/components/data-flow"
-import { HowItWorks } from "@/components/how-it-works"
-import { Comparison } from "@/components/comparison"
-import { ProductBento } from "@/components/product-bento"
-import { FAQ } from "@/components/faq"
-import { ContactSection } from "@/components/contact-form"
-import { Footer } from "@/components/footer"
+import dynamic from "next/dynamic"
+import { Nav } from "@/components/layout/Nav"
+import { Footer } from "@/components/layout/Footer"
+import { Hero } from "@/components/sections/Hero"
+import { Ingestion } from "@/components/sections/Ingestion"
+import { Playbook } from "@/components/sections/Playbook"
+import { Querying } from "@/components/sections/Querying"
+import { CtaBlock } from "@/components/sections/CtaBlock"
+
+const Reporting = dynamic(
+  () => import("@/components/sections/Reporting").then((m) => m.Reporting),
+  { ssr: false }
+)
+
+function Divider() {
+  return (
+    <div className="px-12">
+      <div className="section-divider" />
+    </div>
+  )
+}
 
 export default function Home() {
   return (
     <>
-      <Navbar />
+      <Nav />
       <main>
         <Hero />
-        <TrustBar />
+        <Ingestion />
         <Divider />
-        <StatsRow />
+        <Querying />
         <Divider />
-        <BriefSections />
+        <Reporting />
         <Divider />
-        <DataFlow />
+        <Playbook />
         <Divider />
-        <HowItWorks />
-        <Divider />
-        <Comparison />
-        <Divider />
-        <ProductBento />
-        <Divider />
-        <FAQ />
-        <Divider />
-        <ContactSection />
+        <CtaBlock />
       </main>
       <Footer />
     </>
