@@ -23,7 +23,6 @@ import {
   Scale,
   Briefcase,
   Wallet,
-  ArrowDown,
 } from "lucide-react"
 import { Nav } from "@/components/layout/Nav"
 import { Footer } from "@/components/layout/Footer"

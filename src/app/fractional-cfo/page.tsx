@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Bar, Line } from "react-chartjs-2"
+import { Line, Chart as ReactChart } from "react-chartjs-2"
 import {
   Chart,
   BarElement,
@@ -694,8 +694,9 @@ function SignalsCycler() {
             <span className="display-italic">One pane of glass.</span>
           </h2>
           <p className="max-w-[420px] text-[15px] leading-[1.55] text-fg-2 md:text-right">
-            Pastel watches every client's books, your team's capacity, and
-            close status, and surfaces what needs your judgement.
+            Pastel watches every client&apos;s books, your team&apos;s
+            capacity, and close status, and surfaces what needs your
+            judgement.
           </p>
         </div>
 
@@ -925,7 +926,8 @@ const baseTooltip = {
 function PortfolioChart() {
   const labels = ["Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
   return (
-    <Bar
+    <ReactChart
+      type="bar"
       data={{
         labels,
         datasets: [
