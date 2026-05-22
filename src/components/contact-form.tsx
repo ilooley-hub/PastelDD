@@ -7,6 +7,12 @@ import { PastelOrb } from "./pastel-logo"
 import { Meteors } from "./ui/meteors"
 import { Ripple } from "./ui/ripple"
 
+declare global {
+  interface Window {
+    dataLayer?: Record<string, unknown>[]
+  }
+}
+
 export function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -27,6 +33,10 @@ export function ContactSection() {
       })
 
       if (response.ok) {
+        if (typeof window !== "undefined") {
+          window.dataLayer = window.dataLayer || []
+          window.dataLayer.push({ event: "generate_lead" })
+        }
         setIsSubmitted(true)
       } else {
         const data = await response.json().catch(() => null)
