@@ -3,6 +3,12 @@
 import { useState } from "react"
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll"
 
+declare global {
+  interface Window {
+    dataLayer?: Record<string, unknown>[]
+  }
+}
+
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mnjlvlyz"
 
 export function CtaBlock() {
@@ -24,6 +30,10 @@ export function CtaBlock() {
         headers: { Accept: "application/json" },
       })
       if (res.ok) {
+        if (typeof window !== "undefined") {
+          window.dataLayer = window.dataLayer || []
+          window.dataLayer.push({ event: "generate_lead" })
+        }
         setSubmitted(true)
       } else {
         const data = await res.json().catch(() => null)
