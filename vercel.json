@@ -1,0 +1,6 @@
+{
+  "redirects": [
+    { "source": "/demo", "destination": "https://pastel-demo.vercel.app", "permanent": false },
+    { "source": "/demo/:path*", "destination": "https://pastel-demo.vercel.app/:path*", "permanent": false }
+  ]
+}
