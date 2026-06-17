@@ -1,6 +1,49 @@
 import Link from "next/link"
 import type { ReactNode } from "react"
 
+// The interactive demo lives outside the Next app (getpastel.ai/demo), so it must
+// be a full-page anchor, not a next/link client navigation.
+export const DEMO_HREF = "/demo"
+
+// Demo CTA — promotes the live querying playground. `halo` for the loud spots
+// (demo band), `secondary` for nav / hero where it sits next to Request access.
+export function DemoCta({
+  variant = "secondary",
+  children = "Try the live demo",
+}: {
+  variant?: "halo" | "secondary"
+  children?: ReactNode
+}) {
+  if (variant === "halo") {
+    return (
+      <a
+        href={DEMO_HREF}
+        className="bg-halo-linear inline-flex items-center px-[18px] h-[44px] rounded-md text-[14px] font-semibold tracking-[-0.005em] transition-[filter] hover:[filter:saturate(1.15)_brightness(1.02)]"
+        style={{
+          color: "#1A1228",
+          boxShadow:
+            "0 1px 2px rgba(20,19,28,0.06), inset 0 1px 0 rgba(255,255,255,0.5)",
+        }}
+      >
+        {children}
+      </a>
+    )
+  }
+  return (
+    <a
+      href={DEMO_HREF}
+      className="inline-flex items-center px-[18px] h-[44px] rounded-md border text-[14px] font-semibold tracking-[-0.005em] transition-colors hover:bg-[#F1EFE9] hover:border-[#C7C3B6]"
+      style={{
+        backgroundColor: "#FFFFFF",
+        color: "#14131C",
+        borderColor: "#DEDBD2",
+      }}
+    >
+      {children}
+    </a>
+  )
+}
+
 // Halo gradient — the brandiest CTA. Reserve for the hero / closing block.
 export function HaloCta({
   href = "#contact",

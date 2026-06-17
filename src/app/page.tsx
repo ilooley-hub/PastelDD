@@ -6,6 +6,7 @@ import { Ingestion } from "@/components/sections/Ingestion"
 import { Playbook } from "@/components/sections/Playbook"
 import { Querying } from "@/components/sections/Querying"
 import { CtaBlock } from "@/components/sections/CtaBlock"
+import { TryDemo } from "@/components/sections/TryDemo"
 
 const Reporting = dynamic(
   () => import("@/components/sections/Reporting").then((m) => m.Reporting),
@@ -29,6 +30,8 @@ export default function Home() {
         <Ingestion />
         <Divider />
         <Querying />
+        <Divider />
+        <TryDemo />
         <Divider />
         <Reporting />
         <Divider />

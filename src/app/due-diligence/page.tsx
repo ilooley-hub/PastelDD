@@ -27,7 +27,8 @@ import {
 import { Nav } from "@/components/layout/Nav"
 import { Footer } from "@/components/layout/Footer"
 import { CtaBlock } from "@/components/sections/CtaBlock"
-import { HaloCta, GhostCta } from "@/components/ui/Buttons"
+import { TryDemo } from "@/components/sections/TryDemo"
+import { HaloCta, GhostCta, DemoCta } from "@/components/ui/Buttons"
 import { SeverityTag } from "@/components/ui/SeverityTag"
 import {
   CHART_TEXT,
@@ -264,6 +265,14 @@ function DiligenceHero() {
 
       <div className="relative z-10 mx-auto grid max-w-[1280px] items-center gap-12 md:grid-cols-[6fr_5fr] md:gap-16">
         <div>
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="mb-5 text-[10px] font-semibold uppercase tracking-[0.14em] text-fg-3"
+          >
+            Due diligence automation · private equity
+          </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -286,8 +295,9 @@ function DiligenceHero() {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
             className="mt-8 max-w-[520px] text-[18px] leading-[1.55] text-fg-2"
           >
-            Pastel ingests the VDR, builds the deal ontology, and produces a
-            brief your committee can defend. In 48 hours.
+            Automated due diligence for private equity. Pastel ingests the
+            VDR, builds the deal ontology, and produces a brief your
+            investment committee can defend. In 48 hours.
           </motion.p>
 
           <motion.div
@@ -297,6 +307,7 @@ function DiligenceHero() {
             className="mt-10 flex flex-wrap items-center gap-6"
           >
             <HaloCta href="#contact">Request access</HaloCta>
+            <DemoCta variant="secondary">Try the live demo</DemoCta>
             <GhostCta href="#how-it-works">See how it works →</GhostCta>
           </motion.div>
         </div>
@@ -1183,6 +1194,16 @@ export default function DueDiligencePage() {
         <PipelineStepper />
         <Divider />
         <FindingsCycler />
+        <Divider />
+        <TryDemo
+          heading={
+            <>
+              Interrogate the numbers yourself.{" "}
+              <span className="display-italic">Get a cited answer.</span>
+            </>
+          }
+          body="Pick one of three sample client books and ask anything about the financials. Pastel answers from the data, traceable line by line, with the chart to back it."
+        />
         <Divider />
         <DiligenceMetrics />
         <Divider />

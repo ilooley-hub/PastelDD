@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { SOLUTION_LINKS } from "@/lib/fixtures"
-import { HaloCta } from "@/components/ui/Buttons"
+import { HaloCta, DemoCta } from "@/components/ui/Buttons"
 
 const TOP_LINKS = [
   { label: "About", href: "#about" },
@@ -96,7 +96,8 @@ export function Nav() {
           ))}
         </div>
 
-        <div className="hidden md:inline-flex">
+        <div className="hidden items-center gap-2.5 md:inline-flex">
+          <DemoCta variant="secondary">Live demo</DemoCta>
           <HaloCta href="#contact">Request access</HaloCta>
         </div>
 
@@ -141,9 +142,10 @@ export function Nav() {
               ))}
             </div>
             <div
-              className="mt-3 inline-flex self-start"
+              className="mt-3 flex flex-wrap items-center gap-2.5 self-start"
               onClick={() => setMobileOpen(false)}
             >
+              <DemoCta variant="secondary">Live demo</DemoCta>
               <HaloCta href="#contact">Request access</HaloCta>
             </div>
           </div>
