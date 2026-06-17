@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { HaloCta } from "@/components/ui/Buttons"
+import { HaloCta, DemoCta } from "@/components/ui/Buttons"
 
 const PASTEL_FOR = [
   { label: "Due diligence", href: "/due-diligence" },
@@ -10,6 +10,7 @@ const PASTEL_FOR = [
 ]
 
 const COMPANY = [
+  { label: "Live demo", href: "/demo" },
   { label: "Contact", href: "#contact" },
   { label: "Security", href: "/security" },
   { label: "hello@getpastel.ai", href: "mailto:hello@getpastel.ai" },
@@ -34,7 +35,8 @@ function FooterColumn({
       </div>
       <ul className="flex flex-col gap-2.5">
         {links.map((l) => {
-          const external = l.href.startsWith("mailto:")
+          // /demo is served outside the Next app, so force a full-page anchor.
+          const external = l.href.startsWith("mailto:") || l.href === "/demo"
           return (
             <li key={l.label}>
               {external ? (
@@ -97,8 +99,9 @@ export function Footer() {
               The truth layer for finance. Every figure traceable to its
               source.
             </p>
-            <div className="inline-flex w-fit">
+            <div className="flex w-fit flex-wrap items-center gap-2.5">
               <HaloCta href="#contact">Request access</HaloCta>
+              <DemoCta variant="secondary">Live demo</DemoCta>
             </div>
           </div>
 

@@ -28,7 +28,8 @@ import {
 import { Nav } from "@/components/layout/Nav"
 import { Footer } from "@/components/layout/Footer"
 import { CtaBlock } from "@/components/sections/CtaBlock"
-import { HaloCta, GhostCta } from "@/components/ui/Buttons"
+import { TryDemo } from "@/components/sections/TryDemo"
+import { HaloCta, GhostCta, DemoCta } from "@/components/ui/Buttons"
 import { SeverityTag } from "@/components/ui/SeverityTag"
 import {
   CHART_TEXT,
@@ -283,6 +284,14 @@ function CfoHero() {
 
       <div className="relative z-10 mx-auto grid max-w-[1280px] items-center gap-12 md:grid-cols-[6fr_5fr] md:gap-16">
         <div>
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="mb-5 text-[10px] font-semibold uppercase tracking-[0.14em] text-fg-3"
+          >
+            For fractional CFO practices · automated finance ops
+          </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -290,12 +299,12 @@ function CfoHero() {
             className="display-headline-xl"
             style={{ fontSize: "clamp(44px, 6.5vw, 84px)", overflow: "visible" }}
           >
-            <span className="block">More clients.</span>
+            <span className="block">The fractional CFO is</span>
             <span
               className="block display-italic"
               style={{ lineHeight: 1.18, paddingBottom: "0.22em" }}
             >
-              Without more headcount.
+              the new operating partner.
             </span>
           </motion.h1>
 
@@ -303,11 +312,11 @@ function CfoHero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-            className="mt-8 max-w-[520px] text-[18px] leading-[1.55] text-fg-2"
+            className="mt-8 max-w-[540px] text-[18px] leading-[1.55] text-fg-2"
           >
-            Pastel runs every client&apos;s books continuously. Anomalies,
-            reconciliations and the monthly pack handled, so your team stays on
-            judgement.
+            Pastel turns your office into a continuous insight platform. Every
+            client&apos;s books watched in the background, every anomaly
+            surfaced, every monthly pack ready before the deadline.
           </motion.p>
 
           <motion.div
@@ -317,6 +326,7 @@ function CfoHero() {
             className="mt-10 flex flex-wrap items-center gap-6"
           >
             <HaloCta href="#contact">Request access</HaloCta>
+            <DemoCta variant="secondary">Try the live demo</DemoCta>
             <GhostCta href="#how-it-works">See how it works →</GhostCta>
           </motion.div>
         </div>
@@ -1254,6 +1264,17 @@ export default function FractionalCfoPage() {
         <PipelineStepper />
         <Divider />
         <SignalsCycler />
+        <Divider />
+        <TryDemo
+          eyebrow="Interactive demo · built for CFO practices"
+          heading={
+            <>
+              Run a question across the books.{" "}
+              <span className="display-italic">See the answer, cited.</span>
+            </>
+          }
+          body="Pick one of three sample client books and ask anything, from runway to margin to anomalies. Pastel answers from the numbers, with the chart to back it, in seconds."
+        />
         <Divider />
         <CfoMetrics />
         <Divider />

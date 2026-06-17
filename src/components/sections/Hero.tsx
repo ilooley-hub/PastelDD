@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { HaloCta, GhostCta } from "@/components/ui/Buttons"
+import { HaloCta, GhostCta, DemoCta } from "@/components/ui/Buttons"
 import { OntologyAnim } from "@/components/sections/OntologyAnim"
 
 export function Hero() {
@@ -81,6 +81,7 @@ export function Hero() {
           className="mt-10 flex flex-wrap items-center gap-6"
         >
           <HaloCta href="#contact">Request access</HaloCta>
+          <DemoCta variant="secondary">Try the live demo</DemoCta>
           <GhostCta href="#how-it-works">See how it works →</GhostCta>
         </motion.div>
       </div>
