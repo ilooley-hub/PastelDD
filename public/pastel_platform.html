@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Pastel Platform. How It Works.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F8F8F6; --ink:#101114; --blue:#1F7F9E; --logo-sky:#4FB4EE;
+    --head:'Schibsted Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+    --sky:#DCEEFB; --mint:#DFF3E8; --peach:#FBE7D4; --lilac:#EAE3F6;
+    --green:#2C8560; --amber:#A8761F; --body:#52545C; --muted:#85878F;
+    --shadow:0 1px 2px rgba(16,17,20,0.05);
+    --shadow-lg:0 8px 24px rgba(16,17,20,0.07),0 1px 2px rgba(16,17,20,0.04);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:'Schibsted Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 48px}
+  section{padding:96px 0}
+  .wash-sky{background:linear-gradient(180deg,rgba(124,196,220,.12),rgba(143,168,236,.05) 55%,rgba(255,255,255,0)),#FAFAF8}
+  .wash-mint{background:linear-gradient(180deg,rgba(44,133,96,.08),rgba(124,196,220,.04) 55%,rgba(255,255,255,0)),#FAFAF8}
+  .wash-peach{background:linear-gradient(180deg,rgba(244,201,161,.12),rgba(220,167,197,.05) 60%,rgba(255,255,255,0)),#FAFAF8}
+  .eyebrow{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:16px}
+  h1{font-family:var(--head);font-weight:600;font-size:54px;line-height:1.12;letter-spacing:-.5px;margin-bottom:22px}
+  h2{font-family:var(--head);font-weight:600;font-size:38px;line-height:1.18;letter-spacing:-.3px;margin-bottom:18px}
+  h2.center{text-align:center}
+  .lede{font-size:18px;line-height:1.65;color:var(--body);max-width:640px}
+  .lede.center{margin:0 auto;text-align:center}
+  .btn{display:inline-block;white-space:nowrap;background:var(--ink);color:#fff;text-decoration:none;font-weight:600;font-size:15px;padding:12px 22px;border-radius:8px;box-shadow:var(--shadow)}
+  .btn:hover{background:#23252B}
+  .btn-lg{padding:15px 28px;font-size:16px;border-radius:9px}
+  .link-cta{color:var(--blue);font-weight:600;font-size:16px;text-decoration:none}
+  .ph{color:#C9C9D6}
+
+  .lockup{display:flex;align-items:center;gap:11px;text-decoration:none}
+  .wordmark{font-family:var(--head);font-weight:600;font-size:23px;color:var(--ink);letter-spacing:.2px}
+  .blob-svg{display:block}
+
+  nav{padding:26px 0}
+  .nav-inner{display:flex;align-items:center;gap:36px}
+  .nav-links{display:flex;gap:30px;margin-left:28px;flex:1}
+  .nav-links a{color:var(--ink);text-decoration:none;font-size:15px;font-weight:500;opacity:.82}
+  .nav-links a:hover{color:var(--blue);opacity:1}
+  .login{color:var(--ink);text-decoration:none;font-size:15px;font-weight:500;opacity:.82;margin-right:20px}
+
+  /* ============ HERO ============ */
+  .hero{display:grid;grid-template-columns:46% 54%;gap:24px;align-items:center;padding:56px 0 40px;position:relative}
+  .sub{font-size:18px;line-height:1.65;color:var(--body);max-width:520px;margin-bottom:32px}
+  .cta-row{display:flex;align-items:center;gap:26px;margin-bottom:14px}
+  .micro{font-size:13.5px;color:var(--muted)}
+  .stage{position:relative;padding:16px 0 16px 8px}
+  .stage::before{content:"";position:absolute;inset:-8px -60px 22px 40px;background:var(--sky);border-radius:28px;z-index:0}
+  .console{position:relative;z-index:1;background:#fff;border-radius:12px;box-shadow:var(--shadow-lg);overflow:hidden;display:grid;grid-template-columns:190px 1fr;font-size:12.5px;border:1px solid rgba(35,37,58,.05)}
+  .side{background:#FBFAF7;border-right:1px solid rgba(35,37,58,.07);padding:14px 0 18px}
+  .side .lockup{padding:0 16px 12px;border-bottom:1px solid rgba(35,37,58,.07);margin-bottom:10px}
+  .side .wordmark{font-size:15px}
+  .side h4{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:6px 16px}
+  .client{display:flex;align-items:center;gap:8px;padding:7px 16px}
+  .client.active{background:#EFF5FC;border-right:2px solid var(--blue);font-weight:600}
+  .dot{width:7px;height:7px;border-radius:50%;flex:none}
+  .dot.g{background:var(--green)} .dot.a{background:var(--amber)}
+  .main{padding:16px 18px 18px}
+  .searchbar{display:flex;align-items:center;gap:8px;background:#F4F4F2;border-radius:8px;padding:8px 12px;color:var(--muted);margin-bottom:14px}
+  .client-head{display:flex;align-items:baseline;gap:10px;margin-bottom:12px}
+  .client-head b{font-size:15px}
+  .badge{font-size:10.5px;background:var(--mint);color:var(--green);font-weight:600;border-radius:20px;padding:3px 9px}
+  .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+  .kpi{background:#FBFAF7;border:1px solid rgba(35,37,58,.06);border-radius:10px;padding:10px 12px}
+  .kpi .l{font-size:10.5px;color:var(--muted);margin-bottom:3px}
+  .kpi .v{font-size:16px;font-weight:600;font-variant-numeric:tabular-nums}
+  .panel-title{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:12px 0 8px}
+  .exc{display:flex;gap:9px;align-items:flex-start;background:#fff;border:1px solid rgba(35,37,58,.08);border-radius:10px;padding:9px 11px;margin-bottom:8px}
+  .exc .dot{margin-top:4px}
+  .exc p{line-height:1.45;color:var(--body)}
+  .exc b{color:var(--ink)}
+  .chip{display:inline-block;font-size:10px;font-weight:600;color:var(--blue);background:#EFF5FC;border-radius:12px;padding:2px 8px;margin-left:6px;white-space:nowrap}
+  .answer{background:#FBFAF7;border:1px solid rgba(35,37,58,.06);border-radius:10px;padding:11px 13px;margin-top:4px}
+  .answer .q{font-weight:600;margin-bottom:6px;display:flex;gap:7px;align-items:center}
+  .answer .a{line-height:1.55;color:var(--body)}
+  .cites{margin-top:8px}
+  .cite{display:inline-block;font-size:10.5px;color:var(--blue);border-bottom:1px solid rgba(29,111,196,.45);margin-right:12px;font-weight:500}
+  .thread-chip{position:absolute;right:-6px;top:34px;z-index:2;background:#fff;border-radius:10px;box-shadow:var(--shadow-lg);padding:9px 12px;font-size:11px;width:150px;border:1px solid rgba(35,37,58,.06)}
+  .thread-chip .doc{font-weight:600;display:flex;align-items:center;gap:6px;margin-bottom:4px}
+  .thread-chip .lines span{display:block;height:4px;border-radius:2px;background:#E4E4EC;margin:4px 0}
+  .thread-chip .lines span:nth-child(2){width:70%}
+  .thread-svg{position:absolute;z-index:2;pointer-events:none}
+  svg text{font-family:'Schibsted Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif}
+
+  /* ---- brand element: the orb breathes only where an agent works ---- */
+  @keyframes breathe{0%,100%{transform:scale(1) rotate(0deg)}50%{transform:scale(1.08) rotate(4deg)}}
+  .orb-live{animation:breathe 4.5s ease-in-out infinite;transform-origin:50% 50%}
+  /* ---- brand element: citations attach (reconcile motion) ---- */
+  @keyframes attach{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+  .cites .cite{animation:attach .6s ease-out both}
+  .cites .cite:nth-child(1){animation-delay:.15s}
+  .cites .cite:nth-child(2){animation-delay:.3s}
+  .cites .cite:nth-child(3){animation-delay:.45s}
+  /* ---- brand element: the sign-off stamp ---- */
+  .stamp{display:inline-flex;align-items:center;gap:8px}
+  .stamp .sc{width:26px;height:26px;border-radius:50%;border:1.6px solid var(--ink);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:10px;position:relative;background:#fff;flex:none}
+  .stamp .sc::after{content:"✓";position:absolute;right:-4px;bottom:-4px;width:12px;height:12px;border-radius:50%;background:var(--green);color:#fff;font-size:8px;line-height:12px;text-align:center}
+  .stamp .st-t{font-size:10.5px;color:var(--body)}
+  .stamp .st-t b{color:var(--ink)}
+  .bigstamp{position:absolute;right:16px;bottom:12px;transform:rotate(-9deg);opacity:.9;pointer-events:none}
+  /* ---- brand element: dot leaders (the receipt line) ---- */
+  .receipt-strip{max-width:470px;margin:44px auto 0;border-top:1px solid rgba(35,37,58,.08);padding:32px 0 40px}
+  .rrow{display:flex;align-items:baseline;font-size:15px;margin-bottom:13px;color:var(--body)}
+  .rrow .leader{flex:1;border-bottom:2px dotted #C9C9D6;margin:0 10px;transform:translateY(-3px)}
+  .rrow .val{font-weight:600;font-variant-numeric:tabular-nums;font-family:var(--head);color:var(--ink)}
+
+  .strip{border-top:1px solid rgba(35,37,58,.08);margin-top:44px;padding:26px 0 40px;display:flex;gap:56px;align-items:center;justify-content:center}
+  .stat{text-align:center}
+  .stat .n{font-family:var(--head);font-weight:600;font-size:22px}
+  .stat .d{font-size:13px;color:var(--muted);margin-top:2px}
+
+  /* ============ PROBLEM ============ */
+  .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:52px}
+  .pcard{background:#fff;border-radius:12px;box-shadow:var(--shadow);padding:0 0 26px;overflow:hidden}
+  .pcard .art{height:170px;display:flex;align-items:center;justify-content:center;background:#FBFAF7;border-bottom:1px solid rgba(35,37,58,.05)}
+  .pcard h3{font-family:var(--head);font-weight:600;font-size:19px;margin:22px 26px 10px}
+  .pcard p{font-size:15px;line-height:1.6;color:var(--body);margin:0 26px}
+
+  /* ============ SHIFT ============ */
+  .shift-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+  .pull{font-family:var(--head);font-weight:600;font-size:24px;line-height:1.4;color:var(--ink);border-left:3px solid var(--blue);padding-left:22px;margin-top:30px}
+  .pull em{color:var(--blue);font-style:normal}
+  .diagram{background:#fff;border-radius:12px;box-shadow:var(--shadow);padding:34px 30px}
+  .diagram .dlabel{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}
+
+  /* ============ HOW IT WORKS ============ */
+  .steps{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:56px}
+  .step{background:#fff;border-radius:12px;box-shadow:var(--shadow);padding:28px}
+  .stepnum{width:30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+  .step h3{font-family:var(--head);font-weight:600;font-size:21px;margin-bottom:10px}
+  .step > p{font-size:15px;line-height:1.62;color:var(--body);margin-bottom:20px}
+  .mini{background:#FBFAF7;border:1px solid rgba(35,37,58,.07);border-radius:10px;padding:16px;font-size:12px}
+  .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .tile{background:#fff;border:1px solid rgba(35,37,58,.08);border-radius:8px;padding:10px;text-align:center}
+  .tile .glyph{font-weight:600;font-size:13px;margin-bottom:4px}
+  .tile .st{font-size:10px;color:var(--green)}
+  .rule{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid rgba(35,37,58,.08);border-radius:8px;padding:9px 12px;margin-bottom:8px;color:var(--body)}
+  .toggle{width:28px;height:16px;border-radius:9px;background:var(--green);position:relative;flex:none;margin-left:12px}
+  .toggle::after{content:"";position:absolute;right:2px;top:2px;width:12px;height:12px;border-radius:50%;background:#fff}
+  .brief-title{font-weight:600;color:var(--ink);margin-bottom:6px}
+  .brief p{color:var(--body);line-height:1.5;margin-bottom:10px}
+  .brief .actions{display:flex;gap:8px}
+  .abtn{font-size:11px;font-weight:600;border-radius:6px;padding:6px 12px}
+  .abtn.ok{background:var(--blue);color:#fff}
+  .abtn.alt{background:#fff;border:1px solid rgba(35,37,58,.15);color:var(--ink)}
+
+  /* ============ CLIENT EXPERIENCE ============ */
+  .cx{display:grid;grid-template-columns:44% 56%;gap:56px;align-items:center}
+  .browser{background:#fff;border-radius:12px;box-shadow:var(--shadow-lg);border:1px solid rgba(35,37,58,.05);overflow:hidden}
+  .browser .bar{display:flex;align-items:center;gap:6px;background:#F4F4F2;padding:10px 14px}
+  .browser .bar i{width:9px;height:9px;border-radius:50%;background:#DDDCE4;display:block}
+  .browser .url{flex:1;background:#fff;border-radius:6px;font-size:11px;color:var(--muted);padding:4px 10px;margin-left:8px}
+  .cx-body{padding:22px 24px;font-size:12.5px}
+  .cx-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+  .cx-head b{font-size:14px}
+  .team-badge{font-size:10.5px;background:var(--lilac);color:#5B4B8A;font-weight:600;border-radius:20px;padding:4px 10px}
+  .bubble-q{background:var(--sky);border-radius:12px 12px 12px 3px;padding:10px 13px;font-weight:500;max-width:75%;margin-bottom:10px}
+  .af{display:block;font-family:var(--head);font-weight:600;font-size:21px;letter-spacing:-.02em;color:var(--ink);margin-bottom:3px}
+  .bubble-a{background:#FBFAF7;border:1px solid rgba(35,37,58,.06);border-radius:12px;padding:12px 14px;line-height:1.55;color:var(--body)}
+  .chart{margin-top:16px;background:#FBFAF7;border:1px solid rgba(35,37,58,.06);border-radius:10px;padding:12px 14px}
+  .chart .t{font-size:11px;font-weight:600;margin-bottom:8px;color:var(--ink)}
+
+  /* ============ OUTCOMES ============ */
+  .cards4{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:52px}
+  .ocard{background:#fff;border-radius:12px;box-shadow:var(--shadow);padding:26px 24px}
+  .ocirc{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+  .ocard h3{font-family:var(--head);font-weight:600;font-size:17px;line-height:1.3;margin-bottom:9px}
+  .ocard p{font-size:14px;line-height:1.58;color:var(--body)}
+
+  /* ============ TRUST ============ */
+  .trust{display:grid;grid-template-columns:46% 54%;gap:64px;align-items:center}
+  .receipt{background:#fff;border-radius:12px;box-shadow:var(--shadow);padding:30px;position:relative}
+  .fig-chip{display:inline-block;background:var(--ink);color:#fff;font-weight:600;font-size:20px;border-radius:10px;padding:10px 18px;font-variant-numeric:tabular-nums}
+  .srcs{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+  .src{background:#FBFAF7;border:1px solid rgba(35,37,58,.08);border-radius:9px;padding:9px 12px;font-size:11.5px;width:210px}
+  .src b{display:flex;align-items:center;gap:6px}
+  .src span{color:var(--muted);font-size:10.5px}
+  .auditlog{margin-top:22px;border-top:1px dashed rgba(35,37,58,.15);padding-top:14px;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--body)}
+  .auditlog div{display:flex;gap:14px;padding:3px 0}
+  .auditlog .who-a{color:var(--blue)} .auditlog .who-h{color:var(--green)}
+
+  /* ============ TESTIMONIAL ============ */
+  .tst{max-width:820px;margin:0 auto;text-align:center}
+  .tst blockquote{font-family:var(--head);font-weight:500;font-size:27px;line-height:1.45;color:var(--ink)}
+  .tst blockquote .ph{color:var(--body)}
+  .tst .who{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:26px}
+  .avatar{width:44px;height:44px;border-radius:50%;background:var(--lilac)}
+  .tst .who .n{font-weight:600;font-size:15px;text-align:left}
+  .tst .who .r{font-size:13px;color:var(--muted)}
+
+  /* ============ FINAL CTA ============ */
+  .final{background:linear-gradient(180deg,rgba(124,196,220,.14),rgba(143,168,236,.06) 55%,rgba(255,255,255,0)),#FAFAF8;border-radius:20px;padding:72px 48px;text-align:center;position:relative;overflow:hidden}
+  .final h2{margin-bottom:14px}
+  .final .lede{margin:0 auto 32px}
+
+  footer{padding:64px 0 40px;border-top:1px solid rgba(35,37,58,.08);margin-top:96px}
+  .f-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
+  .f-tag{font-size:14px;color:var(--body);margin-top:14px;max-width:260px;line-height:1.6}
+  footer h5{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  footer a{display:block;color:var(--ink);text-decoration:none;font-size:14px;margin-bottom:10px;opacity:.85}
+  footer a:hover{color:var(--blue)}
+  .fine{margin-top:44px;font-size:12.5px;color:var(--muted)}
+
+  /* ================= brand layer: organic geometry ================= */
+  /* washes become soft blob-bands, not straight stripes */
+  section.wash-sky,section.wash-mint,section.wash-peach{margin:28px;border-radius:72px 44px 88px 52px / 52px 76px 44px 84px;padding:88px 24px}
+  /* the backdrop behind the hero mock is a blob, like the mark */
+  .stage::before{border-radius:46% 54% 52% 48% / 48% 46% 54% 52%;inset:-24px -70px 8px 26px}
+  /* petal cards: one organic corner, echoing the blob. Marketing cards only, mocks stay rectangular */
+  .pcard,.ocard,.step,.acard,.sec-card,.cardbox,.form-card,.fcard{border-radius:14px 14px 14px 36px}
+  .int-tile{border-radius:10px 10px 10px 24px}
+  /* headline highlight: one pastel swipe per hero */
+  .hl{font-style:normal;color:var(--blue)}
+  /* ledger-numbered section marks with dot leaders */
+  .sec-mark{display:flex;align-items:center;gap:12px;margin-bottom:18px;font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+  .sec-mark .num{font-variant-numeric:tabular-nums;opacity:.5}
+  .sec-mark .leader{width:52px;border-bottom:2px dotted rgba(29,111,196,.4);transform:translateY(-2px)}
+  .sec-mark.center{justify-content:center}
+  /* the final CTA is a tear-off receipt stub */
+  .final{border-radius:24px 24px 28px 56px}
+  .final::before{content:"";position:absolute;left:36px;right:36px;top:24px;border-top:2px dashed rgba(29,111,196,.30)}
+  .final::after{content:"";position:absolute;right:-90px;bottom:-130px;width:360px;height:360px;border-radius:46% 54% 52% 48% / 48% 46% 54% 52%;background:rgba(255,255,255,.45);pointer-events:none}
+  /* faint blob outlines for hero/backdrop decoration */
+  .blob-outline{position:absolute;border-radius:46% 54% 52% 48% / 48% 46% 54% 52%;border:1.5px solid rgba(29,111,196,.16);pointer-events:none}
+  /* ================= brand layer v3: the pastel tube ================= */
+  :root{--tube:conic-gradient(from 210deg,#4FB4EE,#8FE3D4,#F8DCC0,#E9D6EE,#4FB4EE)}
+  /* product mocks are windows: they get the tube frame */
+  .console,.browser{border:2px solid transparent;background:linear-gradient(#fff,#fff) padding-box,var(--tube) border-box}
+  /* cards earn the tube on hover */
+  .jtile{border:2px solid transparent}
+  .jtile:hover{background:linear-gradient(#fff,#fff) padding-box,var(--tube) border-box}
+  /* gradient underline on nav hover */
+  .nav-links a{position:relative;padding-bottom:3px}
+  .nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;border-radius:2px;background:linear-gradient(90deg,#4FB4EE,#8FE3D4,#F8DCC0);transition:right .25s ease}
+  .nav-links a:hover::after{right:0}
+  /* even selecting text is on brand */
+  ::selection{background:rgba(46,154,194,.22);color:var(--ink)}
+  /* the scroll tube: a thread of logo gradient pulled through the page */
+  #scrolltube{position:fixed;top:0;left:0;height:3.5px;width:0;z-index:99;background:linear-gradient(90deg,#4FB4EE,#8FE3D4,#F8DCC0,#E9D6EE);border-radius:0 3px 3px 0}
+  /* the orb peeks over the final CTA */
+  .peek{position:absolute;top:-26px;left:50%;transform:translateX(-50%);z-index:2}
+  /* ---- layout helpers shared with subpages ---- */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+  .cardbox{background:#fff;border-radius:14px 14px 14px 36px;box-shadow:var(--shadow);padding:26px}
+  .int-note{text-align:center;color:var(--muted);font-size:13px;margin-top:20px}
+  /* ---- hero animation slot (A9 The night shift) ---- */
+  .hero-anim{aspect-ratio:16/10;border-radius:20px 20px 20px 48px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;border:2.5px solid transparent;background:linear-gradient(var(--sky),var(--sky)) padding-box,var(--tube) border-box;position:relative;z-index:1}
+  .hero-anim .tag{font-size:11px;font-weight:600;letter-spacing:.09em;color:var(--blue);text-transform:uppercase;background:rgba(255,255,255,.75);border-radius:10px;padding:4px 12px;text-align:center;max-width:80%}
+  /* ---- rotating job word in hero ---- */
+  .hero h1{min-height:2.3em}
+  #jobword{display:inline-block;transition:opacity .3s ease, transform .3s ease}
+  #jobword.rot-out{opacity:0;transform:translateY(10px)}
+  /* ---- compact job tiles (link to module pages) ---- */
+  .jtiles{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
+  .jtile .caps{font-size:11px;color:var(--muted);margin-top:7px;line-height:1.5}
+  .jtile.soon{opacity:.75;pointer-events:none}
+  .jtile .mods{margin-top:11px;border-top:1px dashed rgba(35,37,58,.14);padding-top:10px}
+  .jtile .mods a{display:block;font-size:12.5px;color:var(--ink);text-decoration:none;padding:3.5px 0;font-weight:500}
+  .jtile .mods a:hover{color:var(--blue)}
+  .soon-chip{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#5B4B8A;background:var(--lilac);border-radius:10px;padding:3px 9px;margin-top:9px}
+  .jtile{display:block;background:#fff;border-radius:12px 12px 12px 28px;box-shadow:var(--shadow);padding:18px 18px 16px;text-decoration:none;color:var(--ink);transition:transform .15s ease, box-shadow .15s ease}
+  .jtile:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+  .jtile h3{font-family:var(--head);font-weight:600;font-size:15.5px;display:flex;gap:8px;align-items:center;margin-bottom:5px}
+  .jtile p{font-size:12.5px;color:var(--body);line-height:1.5}
+  .jtile .go{font-size:11px;color:var(--blue);font-weight:600;margin-top:9px;display:block}
+  @media (max-width:1080px){.jtiles{grid-template-columns:1fr 1fr}.split{grid-template-columns:1fr}}
+  /* ---- jobs grid with animation slots ---- */
+  .jobs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:52px}
+  .jobcard{background:#fff;border-radius:14px 14px 14px 36px;box-shadow:var(--shadow);overflow:hidden}
+  .jobcard .anim-slot{aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;border-bottom:1px dashed rgba(29,111,196,.3)}
+  .anim-slot .tag{font-size:10px;font-weight:600;letter-spacing:.09em;color:var(--blue);text-transform:uppercase;background:rgba(255,255,255,.75);border-radius:10px;padding:3px 10px}
+  .jobcard h3{font-family:var(--head);font-weight:600;font-size:17.5px;margin:16px 20px 6px}
+  .jobcard p{font-size:13.5px;color:var(--body);margin:0 20px 18px;line-height:1.55}
+  @media (max-width:1080px){.jobs-grid{grid-template-columns:1fr}}
+  @media (max-width:1080px){
+    .hero,.shift-grid,.cx,.trust{grid-template-columns:1fr}
+    .cards3,.steps{grid-template-columns:1fr}
+    .cards4{grid-template-columns:1fr 1fr}
+    h1{font-size:42px} h2{font-size:31px}
+    .stage::before{inset:-8px -20px 22px 20px}
+    .f-grid{grid-template-columns:1fr 1fr}
+  }
+  .page-hero{position:relative}
+  .page-hero::before{content:"";position:absolute;inset:-90px -260px -40px;background:
+    radial-gradient(640px 340px at 16% 8%,rgba(124,196,220,.20),transparent 60%),
+    radial-gradient(560px 320px at 86% 18%,rgba(220,167,197,.14),transparent 60%),
+    radial-gradient(520px 300px at 55% 96%,rgba(143,227,212,.12),transparent 60%);
+    pointer-events:none;z-index:-1}
+  .agents-grid .acard h3{display:flex;align-items:center;gap:10px}
+  .agents-grid .acard h3::before{content:"";display:inline-block;width:12px;height:12px;border-radius:47% 53% 55% 45%/48% 44% 56% 52%;flex:none;background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.55),transparent 55%),var(--cc,#C9C9D6);box-shadow:0 0 0 3px color-mix(in srgb,var(--cc,#C9C9D6) 16%,transparent)}
+  .agents-grid .acard:nth-child(1){--cc:#4FB4EE}
+  .agents-grid .acard:nth-child(2){--cc:#F4C9A1}
+  .agents-grid .acard:nth-child(3){--cc:#8FE3D4}
+  .agents-grid .acard:nth-child(4){--cc:#B69BD9}
+  .agents-grid .acard:nth-child(5){--cc:#DCA7C5}
+  .agents-grid .acard:nth-child(6){--cc:#8FA8EC}
+  section{position:relative}
+  section>.wrap{position:relative;z-index:1}
+  .plx{position:absolute;pointer-events:none;z-index:0;will-change:transform}
+  .gblob{position:absolute;inset:0;pointer-events:none;filter:blur(34px);opacity:.42;background:linear-gradient(135deg,#7FC0E8 0%,#8FA8EC 30%,#DCA7C5 62%,#F4C9A1 100%);animation:blobmorph 16s ease-in-out infinite alternate,gdrift 26s ease-in-out infinite alternate}
+  @keyframes blobmorph{0%{border-radius:46% 54% 52% 48%/48% 46% 54% 52%}50%{border-radius:60% 40% 42% 58%/40% 60% 44% 56%}100%{border-radius:42% 58% 60% 40%/58% 42% 54% 46%}}
+  @keyframes gdrift{from{transform:translate(0,0) rotate(0deg)}to{transform:translate(28px,-22px) rotate(7deg)}}
+  .gring{position:absolute;inset:0;pointer-events:none;border-radius:50%;opacity:.38;background:conic-gradient(from 200deg,#4FB4EE,#8FE3D4,#F8DCC0,#E9D6EE,#4FB4EE);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));animation:ringspin 48s linear infinite}
+  @keyframes ringspin{to{transform:rotate(1turn)}}
+  footer{position:relative;overflow:hidden}
+  footer::after{content:"";position:absolute;right:-120px;bottom:-160px;width:380px;height:380px;background:url(pastel-orb.png) center/contain no-repeat;opacity:.12;pointer-events:none}
+  footer .wrap{position:relative;z-index:1}
+  @media (max-width:720px){.plx{display:none}}
+  @media (prefers-reduced-motion: reduce){.gblob,.gring{animation:none}}
+  .stage{position:relative;padding:16px 0}
+  .sea{position:absolute;inset:-40px -80px -40px -20px;z-index:0;overflow:hidden;border-radius:60px;pointer-events:none}
+  .sea i{position:absolute;border-radius:50%;filter:blur(58px);opacity:.62}
+  .sea i:nth-child(1){width:420px;height:380px;left:-6%;top:-18%;background:#BFE3F9;animation:drift1 26s ease-in-out infinite alternate}
+  .sea i:nth-child(2){width:380px;height:360px;right:-10%;top:6%;background:#CDF0E6;animation:drift2 31s ease-in-out infinite alternate}
+  .sea i:nth-child(3){width:330px;height:320px;left:22%;bottom:-24%;background:#FBE7D4;animation:drift3 37s ease-in-out infinite alternate}
+  .sea i:nth-child(4){width:300px;height:300px;right:14%;bottom:-16%;background:#EAE3F6;animation:drift1 43s ease-in-out infinite alternate-reverse}
+  .sea i:nth-child(5){width:280px;height:270px;left:38%;top:-14%;background:#F6D9EA;animation:drift2 36s ease-in-out infinite alternate-reverse}
+  .sea i:nth-child(6){width:270px;height:260px;left:44%;bottom:-18%;background:#CDD7F6;animation:drift3 46s ease-in-out infinite alternate}
+  @keyframes drift1{from{transform:translate(0,0) scale(1)}to{transform:translate(46px,26px) scale(1.12)}}
+  @keyframes drift2{from{transform:translate(0,0) scale(1.06)}to{transform:translate(-40px,30px) scale(.96)}}
+  @keyframes drift3{from{transform:translate(0,0)}to{transform:translate(34px,-26px) scale(1.1)}}
+
+  .sea-film{position:absolute;inset:-28px -64px -28px -12px;z-index:0;border-radius:52px;overflow:hidden;opacity:.72;filter:blur(2px) saturate(1.04);background:url('video-sea.png') center/cover}
+  .sea-film video{width:100%;height:100%;object-fit:cover}
+  @media (max-width:1080px){.sea-film{inset:-16px -24px}}
+  @media (max-width:720px){.sea-film video{display:none}}
+  @media (prefers-reduced-motion: reduce){.sea-film video{display:none}}
+  .hero-anim{aspect-ratio:16/10.4;border-radius:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:2.5px solid transparent;background:linear-gradient(rgba(255,255,255,.78),rgba(255,255,255,.78)) padding-box,var(--tube) border-box;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);position:relative;z-index:1;box-shadow:var(--shadow-lg);overflow:hidden;animation:cardfloat 8s ease-in-out infinite alternate}
+  @keyframes cardfloat{from{transform:translateY(0)}to{transform:translateY(-7px)}}
+  .card-top{position:absolute;top:16px;left:20px;right:20px;display:flex;align-items:center;justify-content:space-between;z-index:2}
+  .live-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(44,133,96,.4);animation:livepulse 2.4s ease-out infinite}
+  @keyframes livepulse{0%{box-shadow:0 0 0 0 rgba(44,133,96,.35)}70%{box-shadow:0 0 0 9px rgba(44,133,96,0)}100%{box-shadow:0 0 0 0 rgba(44,133,96,0)}}
+  .sc-dots{position:absolute;bottom:13px;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:2}
+  .sdot{width:7px;height:7px;border-radius:4px;border:0;padding:0;background:rgba(16,17,20,.16);cursor:pointer;transition:width .25s ease,background .25s ease}
+  .sdot.on{width:22px;background:var(--accent)}
+  .scene{transition:opacity .28s ease,transform .28s ease}
+  .switching .scene{opacity:0;transform:translateY(6px)}
+  .ha{width:86%;font-size:13.5px}
+  .ha-q{background:#fff;border:1px solid #DEDEDA;border-radius:15px 15px 15px 4px;padding:12px 16px;font-weight:500;font-size:15px;min-height:44px;max-width:90%;box-shadow:var(--shadow)}
+  .ha-caret{display:inline-block;width:2px;height:14px;background:var(--ink);margin-left:2px;vertical-align:-2px;animation:hablink 1s steps(1) infinite}
+  @keyframes hablink{50%{opacity:0}}
+  .ha-think{display:flex;align-items:center;gap:7px;margin:12px 0 0 4px;opacity:0}
+  .ha-think i{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:habounce 1s ease-in-out infinite}
+  .ha-think i:nth-child(3){animation-delay:.15s}
+  .ha-think i:nth-child(4){animation-delay:.3s}
+  @keyframes habounce{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(-4px);opacity:1}}
+  .play .ha-think{animation:hashow 1.6s ease both;animation-delay:1.75s}
+  @keyframes hashow{0%{opacity:0}12%{opacity:1}88%{opacity:1}100%{opacity:0}}
+  .ha-a{background:rgba(255,255,255,.94);border:1px solid #DEDEDA;border-radius:16px;padding:18px 20px;margin-top:14px;line-height:1.5;color:var(--body);opacity:0;transform:translateY(10px);box-shadow:var(--shadow)}
+  .ha-a .af{font-size:40px;letter-spacing:-.03em;margin-bottom:6px;opacity:0;transform:translateY(8px) scale(.96)}
+  .play .ha-a .af{animation:afpop .5s cubic-bezier(.2,.8,.2,1) 3.3s forwards}
+  @keyframes afpop{to{opacity:1;transform:none}}
+  .ha-a p{font-size:14px}
+  .play .ha-a{animation:harise .55s ease forwards;animation-delay:3.1s}
+  @keyframes harise{to{opacity:1;transform:none}}
+  .ha-cites{margin-top:9px}
+  .ha-cites span{display:inline-block;font-size:10.5px;color:var(--accent);border-bottom:1px solid rgba(31,127,158,.45);margin-right:11px;font-weight:500;opacity:0;transform:translateY(-6px)}
+  .play .ha-cites span{animation:hacite .5s ease forwards}
+  .play .ha-cites span:nth-child(1){animation-delay:3.9s}
+  .play .ha-cites span:nth-child(2){animation-delay:4.1s}
+  .play .ha-cites span:nth-child(3){animation-delay:4.3s}
+  @keyframes hacite{to{opacity:1;transform:none}}
+  .ha-spark{display:block;width:72%;margin-top:12px}
+  .ha-line{stroke-dasharray:270;stroke-dashoffset:270}
+  .play .ha-line{animation:hadraw 1s ease forwards;animation-delay:4.5s}
+  @keyframes hadraw{to{stroke-dashoffset:0}}
+  .ha-dot{opacity:0}
+  .play .ha-dot{animation:hacite .3s ease forwards;animation-delay:5.4s}
+  .ha-area{opacity:0}
+  .play .ha-area{animation:hacite .8s ease forwards;animation-delay:5.1s}
+  .scene{display:none}
+  .s1 .scene1{display:block}
+  .s2 .scene2{display:block;animation:paneIn .5s ease}
+  .s3 .scene3{display:block}
+  .s4 .scene4{display:block;animation:paneIn .5s ease}
+  /* scene 3: typed question then bars */
+  .s3.play .ha-think{animation-delay:2.3s}
+  .s3.play .ha-a{animation-delay:3.5s}
+  .s3.play .ha-a .af{animation-delay:3.7s}
+  .ha-bars rect{transform-box:fill-box;transform-origin:bottom;transform:scaleY(0)}
+  .s3.play .ha-bars rect{animation:barup .55s cubic-bezier(.2,.8,.2,1) forwards}
+  .s3.play .ha-bars rect:nth-of-type(1){animation-delay:4.3s}
+  .s3.play .ha-bars rect:nth-of-type(2){animation-delay:4.45s}
+  .s3.play .ha-bars rect:nth-of-type(3){animation-delay:4.6s}
+  .s3.play .ha-bars rect:nth-of-type(4){animation-delay:4.75s}
+  .s3.play .ha-bars rect:nth-of-type(5){animation-delay:4.9s}
+  .ha-bars g{opacity:0}
+  .s3.play .ha-bars g{animation:hacite .5s ease 4.9s forwards}
+  .s3.play .ha-cites span:nth-child(1){animation-delay:5.5s}
+  .s3.play .ha-cites span:nth-child(2){animation-delay:5.7s}
+  .s3.play .ha-cites span:nth-child(3){animation-delay:5.9s}
+  /* scene 4: agent handles a vendor thread */
+  .vc-mail{background:#fff;border:1px solid #DEDEDA;border-radius:12px;padding:13px 15px;margin:9px 0;opacity:0;transform:translateY(8px);box-shadow:var(--shadow)}
+  .vc-subj{display:flex;align-items:center;gap:8px;font-weight:600;font-size:13px;color:var(--ink);margin-bottom:9px}
+  .vc-line{display:block;height:9px;background:#F1F1EE;border-radius:5px;margin-top:7px}
+  .vc-foot{display:flex;justify-content:flex-end;margin-top:10px}
+  .s4 .vc1{animation:rcrow .4s ease .2s forwards}
+  .s4 .vc1 .rc-chip{animation:rcchip .35s ease .9s forwards}
+  .s4 .vc-mail{animation:rcrow .5s ease 1.8s forwards}
+  .vc-sent{opacity:0;transform:scale(.7)}
+  .s4 .vc-sent{animation:rcchip .4s ease 3.4s forwards}
+  .s4 .vc2{animation:rcrow .4s ease 4.7s forwards}
+  .s4 .vc2 .rc-chip{animation:rcchip .35s ease 5.3s forwards}
+  .vc-final{opacity:0}
+  .s4 .vc-final{animation:rcrow .5s ease 6.2s forwards}
+  .rc-head{display:flex;justify-content:space-between;align-items:baseline;font-weight:600;font-size:14.5px;margin-bottom:13px}
+  .rc-sum{font-size:11.5px;font-weight:500;color:var(--muted)}
+  .rc-sum b{color:var(--accent)}
+  .rc-row{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.94);border:1px solid #DEDEDA;border-radius:10px;padding:11px 14px;margin-bottom:8px;color:var(--body);font-size:13.5px;font-variant-numeric:tabular-nums;opacity:0;transform:translateY(8px)}
+  .rc-chip{font-style:normal;font-size:10.5px;font-weight:600;border-radius:10px;padding:2px 9px;opacity:0;transform:scale(.7)}
+  .rc-chip.ok{color:var(--green);background:rgba(44,133,96,.10);border:1px solid rgba(44,133,96,.26)}
+  .rc-chip.dr{color:var(--amber);background:rgba(168,118,31,.12);border:1px solid rgba(168,118,31,.28)}
+  @keyframes rcrow{to{opacity:1;transform:none}}
+  @keyframes rcchip{60%{transform:scale(1.08)}to{opacity:1;transform:scale(1)}}
+  .s2 .rc-row:nth-of-type(2){animation:rcrow .4s ease .2s forwards}
+  .s2 .rc-row:nth-of-type(2) .rc-chip{animation:rcchip .35s ease .9s forwards}
+  .s2 .rc-row:nth-of-type(3){animation:rcrow .4s ease 1.5s forwards}
+  .s2 .rc-row:nth-of-type(3) .rc-chip{animation:rcchip .35s ease 2.2s forwards}
+  .s2 .rc-row:nth-of-type(4){animation:rcrow .4s ease 2.8s forwards}
+  .s2 .rc-row:nth-of-type(4) .rc-chip{animation:rcchip .35s ease 3.5s forwards}
+  .s2 .rc-row:nth-of-type(5){animation:rcrow .4s ease 4.1s forwards}
+  .s2 .rc-row:nth-of-type(5) .rc-chip{animation:rcchip .35s ease 4.8s forwards}
+  .rc-final{display:flex;gap:10px;justify-content:center;margin-top:14px;opacity:0}
+  .s2 .rc-final{animation:rcrow .5s ease 5.6s forwards}
+  .rc-final .rc-chip{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){
+    .ha-think{display:none}
+    .ha-a,.ha-cites span,.ha-stamp,.ha-dot{opacity:1 !important;transform:none !important;animation:none !important}
+    .ha-line{stroke-dashoffset:0;animation:none !important}
+    .ha-caret{display:none}
+  }
+  @keyframes breathe{0%,100%{transform:scale(1) rotate(0deg)}50%{transform:scale(1.08) rotate(4deg)}}
+  .orb-live{animation:breathe 4.5s ease-in-out infinite;transform-origin:50% 50%}
+
+  .webwrap{max-width:1000px;margin:48px auto 0}
+  .dp{offset-rotate:0deg;animation:dpmove 3s linear infinite;opacity:0}
+  @keyframes dpmove{0%{offset-distance:0%;opacity:0}12%{opacity:1}82%{opacity:1}100%{offset-distance:100%;opacity:0}}
+  @media (prefers-reduced-motion: reduce){.dp{display:none}}
+  @keyframes paneIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @keyframes artdraw{to{stroke-dashoffset:0}}
+  @keyframes barup{to{transform:scaleY(1)}}
+  @keyframes rowin{to{opacity:1;transform:none}}
+  .flowline{stroke-dasharray:6 7;animation:flow 2.6s linear infinite}
+  @keyframes flow{to{stroke-dashoffset:-13}}
+  .stage .fcard{display:none}
+  .nav-item{position:relative;display:inline-block}
+  .nav-item::after{content:"";position:absolute;left:0;right:0;top:100%;height:16px}
+  .nav-drop{position:absolute;left:-16px;top:calc(100% + 14px);min-width:280px;background:rgba(255,255,255,.96);backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);border:1px solid rgba(16,17,20,.08);border-radius:16px;box-shadow:0 24px 60px rgba(16,17,20,.14);padding:10px;opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .18s ease,transform .18s ease;z-index:70;display:block}
+  .nav-item:hover .nav-drop,.nav-item:focus-within .nav-drop{opacity:1;transform:none;pointer-events:auto}
+  .nav-drop a{display:flex !important;align-items:center;gap:11px;padding:9px 12px !important;border-radius:10px;font-size:14px !important;font-weight:500;opacity:1 !important;color:inherit}
+  .nav-drop a:hover{background:rgba(16,17,20,.05)}
+  .nav-drop a::after{display:none !important}
+  .nd-dot{display:inline-block;width:10px;height:10px;border-radius:47% 53% 55% 45%/48% 44% 56% 52%;flex:none}
+  .nd-head{display:block;font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#85878F;padding:8px 12px 4px}
+  .nd-sep{display:block;height:1px;background:rgba(16,17,20,.07);margin:8px 4px}
+  @media (max-width:720px){.nav-drop{display:none}}
+</style>
+
+<style>
+  .browser{position:relative;z-index:1}
+  .page-hero{padding:64px 0 56px;text-align:center}
+  .page-hero h1{font-size:46px;max-width:820px;margin:0 auto 20px}
+  .page-hero .lede{margin:0 auto}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+  .split .lede{font-size:16.5px}
+  .cardbox{background:#fff;border-radius:14px 14px 14px 36px;box-shadow:var(--shadow);padding:26px}
+  .reports .rrow{font-size:14px;margin-bottom:11px}
+  .reports .val{font-size:13px;color:var(--green);font-family:'Schibsted Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-weight:600}
+  .agents-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:52px}
+  .agents-grid .acard{background:#fff;border-radius:12px;box-shadow:var(--shadow);padding:24px}
+  .acard h3{font-family:var(--head);font-weight:600;font-size:18px;margin:0 0 8px;display:flex;align-items:center;gap:8px}
+  .acard p{font-size:14px;line-height:1.6;color:var(--body)}
+  .int-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:44px}
+  .int-tile{background:#fff;border:1px solid rgba(35,37,58,.08);border-radius:10px;padding:16px 8px;text-align:center;font-weight:600;font-size:13px;box-shadow:var(--shadow)}
+  .int-note{text-align:center;color:var(--muted);font-size:13px;margin-top:20px}
+  .sec-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:52px}
+  .sec-card{background:#fff;border-radius:12px;box-shadow:var(--shadow);padding:28px}
+  .sec-card h3{font-family:var(--head);font-weight:600;font-size:19px;margin-bottom:10px;display:flex;gap:10px;align-items:center}
+  .sec-card p{font-size:15px;line-height:1.62;color:var(--body)}
+  .badge-slot{display:inline-block;border:1.6px dashed #C9C9D6;border-radius:10px;padding:12px 18px;color:var(--muted);font-weight:600;font-size:13px;margin:12px 12px 0 0}
+  .anim-hero{max-width:860px;margin:44px auto 0;aspect-ratio:16/7;border-radius:20px 20px 20px 48px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;border:2.5px solid transparent}
+  .anim-hero .tag{font-size:11px;font-weight:600;letter-spacing:.09em;color:var(--blue);text-transform:uppercase;background:rgba(255,255,255,.75);border-radius:10px;padding:4px 12px}
+  .job-bullets{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px}
+  .job-bullets .acard{background:#fff;border-radius:14px 14px 14px 36px;box-shadow:var(--shadow);padding:26px 24px}
+  .control-strip{display:flex;gap:16px;align-items:center;background:#fff;border-radius:14px 14px 14px 36px;box-shadow:var(--shadow);padding:24px 30px;max-width:760px;margin:64px auto 0}
+  .control-strip p{font-size:15px;color:var(--body);line-height:1.55}
+  .job-index{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:52px}
+  .faq{max-width:760px;margin:36px auto 0}
+  .faqi{background:#fff;border-radius:12px 12px 12px 24px;box-shadow:var(--shadow);margin-bottom:12px;padding:4px 22px}
+  .faqi summary{cursor:pointer;font-weight:600;font-size:15.5px;padding:15px 0;list-style-position:outside}
+  .faqi p{font-size:14.5px;line-height:1.62;color:var(--body);padding:0 0 16px}
+  .stepnum{width:30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+  @media (max-width:1080px){.job-bullets,.job-index{grid-template-columns:1fr}}
+  .form-card{background:#fff;border-radius:14px;box-shadow:var(--shadow-lg);padding:34px;border:1px solid rgba(35,37,58,.05)}
+  .form-card label{display:block;font-size:13px;font-weight:600;margin:16px 0 6px}
+  .form-card input,.form-card select{width:100%;padding:11px 13px;border:1px solid rgba(35,37,58,.16);border-radius:8px;font-family:'Schibsted Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;background:#fff;color:var(--ink)}
+  .form-card input:focus,.form-card select:focus{outline:2px solid var(--blue);outline-offset:0;border-color:var(--blue)}
+  .form-card .btn{width:100%;text-align:center;margin-top:24px;border:none;cursor:pointer;font-family:'Schibsted Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif}
+  .form-note{font-size:12.5px;color:var(--muted);margin-top:14px;text-align:center}
+  .expect{margin-top:30px}
+  .expect .rrow{font-size:15px}
+  .flow{display:flex;align-items:center;gap:0;justify-content:center;margin-top:8px}
+  .flow .fcard{background:#fff;border-radius:12px;box-shadow:var(--shadow);padding:20px 22px;text-align:center;width:210px}
+  .flow .fcard .t{font-weight:600;font-size:14.5px;margin-top:10px}
+  .flow .fcard .d{font-size:12.5px;color:var(--body);margin-top:4px;line-height:1.5}
+  .mini-wide{background:#FBFAF7;border:1px solid rgba(35,37,58,.07);border-radius:10px;padding:16px;font-size:12px}
+  @media (max-width:1080px){
+    .split{grid-template-columns:1fr}
+    .agents-grid{grid-template-columns:1fr}
+    .int-grid{grid-template-columns:repeat(3,1fr)}
+    .sec-grid{grid-template-columns:1fr}
+    .page-hero h1{font-size:36px}
+  }
+</style>
+</head>
+<body>
+<div id="scrolltube"></div>
+<nav class="wrap">
+  <div class="nav-inner">
+    <a class="lockup" href="pastel_homepage_v5.html">
+      <img class="blob-svg" src="pastel-orb.png" alt="" width="38" height="38">
+      <span class="wordmark">Pastel</span>
+    </a>
+    <div class="nav-links">
+      <span class="nav-item"><a href="pastel_platform.html">Platform</a><span class="nav-drop">
+        <a href="pastel_platform.html"><i class="nd-dot" style="background:conic-gradient(from 210deg,#4FB4EE,#8FE3D4,#F8DCC0,#E9D6EE,#4FB4EE)"></i>Platform overview</a>
+        <span class="nd-sep"></span>
+        <span class="nd-head">Modules</span>
+        <a href="pastel_job_bookkeeping.html"><i class="nd-dot" style="background:#4FB4EE"></i>Bookkeeping</a>
+        <a href="pastel_job_expenses.html"><i class="nd-dot" style="background:#F4C9A1"></i>Expense management</a>
+        <a href="pastel_job_revenue.html"><i class="nd-dot" style="background:#8FE3D4"></i>Revenue management</a>
+        <a href="pastel_job_fpa.html"><i class="nd-dot" style="background:#B69BD9"></i>Reporting &amp; FP&amp;A</a>
+        <a href="pastel_job_payroll.html"><i class="nd-dot" style="background:#8FA8EC"></i>Payroll</a>
+      </span></span><a href="pastel_firms.html">For accounting firms</a><a href="pastel_security.html">Security</a>
+    </div>
+    <a class="login" href="https://app.getpastel.ai">Log in</a>
+    <a class="btn" href="pastel_demo.html">Book a demo</a>
+  </div>
+</nav>
+
+<div class="wrap page-hero" style="position:relative">
+  <h1>How you run finance <em class="hl">with Pastel.</em></h1>
+  <p class="lede">One clean picture of your company. Your rules, written down. Agents doing the work.</p>
+</div>
+
+<section style="padding-top:24px">
+  <div class="wrap">
+    <h2 class="center">All your data. One picture.</h2>
+    <p class="lede center" style="margin:0 auto">Connect your systems once: the ledger, the banks, credit cards, payroll, invoices, contracts, and the spreadsheets in between. Pastel reads them all day and resolves everything into one current picture of your company.</p>
+    <div class="webwrap">
+      <svg viewBox="0 0 1000 400" width="100%" aria-label="Integrations flowing into Pastel">
+        <g stroke="#9FB6C9" stroke-width="1.5" fill="none">
+          <path class="flowline" style="animation-delay:-0.00s" d="M 131 283 L 418 296"/><path class="flowline" style="animation-delay:-0.35s" d="M 136 215 L 420 282"/><path class="flowline" style="animation-delay:-0.70s" d="M 223 157 L 426 264"/><path class="flowline" style="animation-delay:-1.05s" d="M 329 116 L 441 243"/><path class="flowline" style="animation-delay:-1.40s" d="M 436 95 L 475 222"/><path class="flowline" style="animation-delay:-1.75s" d="M 557 95 L 525 222"/><path class="flowline" style="animation-delay:-2.10s" d="M 665 116 L 559 243"/><path class="flowline" style="animation-delay:-2.45s" d="M 781 157 L 574 264"/><path class="flowline" style="animation-delay:-2.80s" d="M 823 215 L 580 282"/><path class="flowline" style="animation-delay:-3.15s" d="M 834 283 L 582 296"/>
+        </g>
+        <circle class="dp" r="3.4" fill="#4FB4EE" style="offset-path:path('M 131 283 L 418 296');animation-delay:0.00s"/><circle class="dp" r="3.4" fill="#B69BD9" style="offset-path:path('M 223 157 L 426 264');animation-delay:1.00s"/><circle class="dp" r="3.4" fill="#F4C9A1" style="offset-path:path('M 436 95 L 475 222');animation-delay:2.00s"/><circle class="dp" r="3.4" fill="#4FB4EE" style="offset-path:path('M 665 116 L 559 243');animation-delay:3.00s"/><circle class="dp" r="3.4" fill="#B69BD9" style="offset-path:path('M 823 215 L 580 282');animation-delay:4.00s"/>
+        <g><rect x="53" y="266" width="85" height="32" rx="16" fill="#fff" stroke="#DEDEDA"/><text x="95" y="286" text-anchor="middle" font-size="12.5" font-weight="600" fill="#101114">Priority</text></g><g><rect x="96" y="196" width="47" height="32" rx="16" fill="#fff" stroke="#DEDEDA"/><text x="119" y="216" text-anchor="middle" font-size="12.5" font-weight="600" fill="#101114">SAP</text></g><g><rect x="147" y="134" width="85" height="32" rx="16" fill="#fff" stroke="#DEDEDA"/><text x="190" y="155" text-anchor="middle" font-size="12.5" font-weight="600" fill="#101114">NetSuite</text></g><g><rect x="248" y="88" width="100" height="32" rx="16" fill="#fff" stroke="#DEDEDA"/><text x="298" y="109" text-anchor="middle" font-size="12.5" font-weight="600" fill="#101114">QuickBooks</text></g><g><rect x="402" y="64" width="54" height="32" rx="16" fill="#fff" stroke="#DEDEDA"/><text x="430" y="85" text-anchor="middle" font-size="12.5" font-weight="600" fill="#101114">Xero</text></g><g><rect x="520" y="64" width="100" height="32" rx="16" fill="#fff" stroke="#DEDEDA"/><text x="570" y="85" text-anchor="middle" font-size="12.5" font-weight="600" fill="#101114">Bank feeds</text></g><g><rect x="645" y="88" width="115" height="32" rx="16" fill="#fff" stroke="#DEDEDA"/><text x="702" y="109" text-anchor="middle" font-size="12.5" font-weight="600" fill="#101114">Credit cards</text></g><g><rect x="772" y="134" width="77" height="32" rx="16" fill="#fff" stroke="#DEDEDA"/><text x="810" y="155" text-anchor="middle" font-size="12.5" font-weight="600" fill="#101114">Payroll</text></g><g><rect x="815" y="196" width="130" height="32" rx="16" fill="#fff" stroke="#DEDEDA"/><text x="881" y="216" text-anchor="middle" font-size="12.5" font-weight="600" fill="#101114">Excel & Sheets</text></g><g><rect x="828" y="266" width="153" height="32" rx="16" fill="#fff" stroke="#DEDEDA"/><text x="905" y="286" text-anchor="middle" font-size="12.5" font-weight="600" fill="#101114">Email & contracts</text></g>
+        <image href="pastel-orb.png" x="448" y="248" width="104" height="104" class="orb-live"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:8px">
+  <div class="wrap">
+    <h2 class="center">Answers that don't hallucinate.</h2>
+    <p class="lede center" style="margin:0 auto">Everything you see is read from the ledger, the bank, the invoice. If it isn't in your data, Pastel doesn't say it.</p>
+    <div style="max-width:760px;margin:72px auto 0">
+        <div class="stage">
+    <div class="sea" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="fcard fc1" aria-hidden="true"><span class="fc-l">Cash</span><span class="fc-v">$412,908</span></div>
+    <div class="fcard fc2" aria-hidden="true"><svg width="92" height="30" viewBox="0 0 92 30"><path d="M3 24 C 22 20, 40 16, 58 11 C 70 8, 82 6, 89 4" stroke="#1F7F9E" stroke-width="2.2" fill="none" stroke-linecap="round"/><circle cx="89" cy="4" r="2.8" fill="#1F7F9E"/></svg></div>
+    <div class="fcard fc3" aria-hidden="true"><span class="fc-b">✓</span><span class="fc-t">March close · signed</span></div>
+    <div class="fcard fc4" aria-hidden="true"><span class="fc-t">Bank rec</span><span class="fc-pill">214 matched</span></div>
+    <div class="hero-anim" id="heroAnim">
+      <div class="ha scene scene1">
+        <div class="ha-q"><span id="haType"></span><span class="ha-caret"></span></div>
+        <div class="ha-think"><img src="pastel-orb.png" alt="" width="26" height="26" class="orb-live"><i></i><i></i><i></i></div>
+        <div class="ha-a">
+          <p><b class="af">−3.2 pts gross margin</b>One freight charge · $14,300</p>
+          <div class="ha-cites"><span>Ledger row · 4021</span><span>Invoice #2291</span><span>Contract · Acme Co.</span></div>
+          <svg class="ha-spark" viewBox="0 0 240 44" aria-hidden="true">
+            <path class="ha-line" d="M4 14 L44 11 L86 17 L128 9 L170 7 L232 30" fill="none" stroke="#2C8560" stroke-width="2"/>
+            <circle class="ha-dot" cx="232" cy="30" r="3.4" fill="#2C8560"/>
+          </svg>
+        </div>
+      </div>
+      <div class="ha scene scene2">
+        <div class="rc-head"><span>Vendor reconciliation</span><span class="rc-sum">33 items</span></div>
+        <div class="rc-row"><span>Tidewater Logistics · $179,461</span><em class="rc-chip ok">Resolved ✓</em></div>
+        <div class="rc-row"><span>Juniper Dental · $2,820</span><em class="rc-chip ok">Resolved ✓</em></div>
+        <div class="rc-row"><span>Northgate Freight · $14,300</span><em class="rc-chip dr">Draft · for review</em></div>
+        <div class="rc-row"><span>Alder &amp; Vine · $4,600</span><em class="rc-chip ok">Resolved ✓</em></div>
+        <div class="rc-final"><em class="rc-chip ok">30 resolved ✓</em><em class="rc-chip dr">3 for your review</em></div>
+      </div>
+      <div class="ha scene scene3">
+        <div class="ha-q"><span id="ha2Type"></span><span class="ha-caret"></span></div>
+        <div class="ha-think"><img src="pastel-orb.png" alt="" width="26" height="26" class="orb-live"><i></i><i></i><i></i></div>
+        <div class="ha-a">
+          <p><b class="af">$1.86M</b>Top 5 customers · trailing 12 months</p>
+          <svg class="ha-bars" viewBox="0 0 300 122" aria-hidden="true" style="display:block;width:82%;margin-top:12px">
+            <rect x="10"  y="12" width="30" height="92" rx="5" fill="#4FB4EE"/>
+            <rect x="70"  y="30" width="30" height="74" rx="5" fill="#8FE3D4"/>
+            <rect x="130" y="44" width="30" height="60" rx="5" fill="#B69BD9"/>
+            <rect x="190" y="58" width="30" height="46" rx="5" fill="#F4C9A1"/>
+            <rect x="250" y="68" width="30" height="36" rx="5" fill="#DCA7C5"/>
+            <g font-size="10" fill="#85878F" text-anchor="middle">
+              <text x="25" y="118">Tidewater</text><text x="85" y="118">Solstice</text><text x="145" y="118">Meridian</text><text x="205" y="118">Cobalt</text><text x="265" y="118">Harbor</text>
+            </g>
+          </svg>
+          <div class="ha-cites"><span>Invoices · 12 mo</span><span>Stripe payouts</span><span>Contracts</span></div>
+        </div>
+      </div>
+      <div class="ha scene scene4">
+        <div class="rc-head"><span>Vendor communication</span><span class="rc-sum">agent · autonomous</span></div>
+        <div class="rc-row vc1"><span>Northgate Freight · $1,420 statement difference</span><em class="rc-chip dr">investigating</em></div>
+        <div class="vc-mail">
+          <div class="vc-subj"><img src="pastel-orb.png" alt="" width="16" height="16">Re: March statement · missing credit note</div>
+          <i class="vc-line" style="width:86%"></i>
+          <i class="vc-line" style="width:62%"></i>
+          <div class="vc-foot"><em class="rc-chip ok vc-sent">Sent ✓</em></div>
+        </div>
+        <div class="rc-row vc2"><span>Reply · credit note #CN-118 attached</span><em class="rc-chip ok">received ✓</em></div>
+        <div class="rc-final vc-final"><em class="rc-chip ok" style="font-size:12px;padding:5px 13px">Resolved · credit note applied ✓</em></div>
+      </div>
+      <div class="sc-dots" aria-hidden="true"><button class="sdot on" data-s="1"></button><button class="sdot" data-s="2"></button><button class="sdot" data-s="3"></button><button class="sdot" data-s="4"></button></div>
+    </div>
+  </div>
+    </div>
+  </div>
+</section>
+
+<section class="wash-sky">
+  <div class="wrap split">
+    <div class="cardbox">
+      <div style="font-weight:600;margin-bottom:12px">Brightline Foods · Playbook <span class="chip">applies every month</span></div>
+      <div class="mini-wide">
+        <div class="rule">Flag any journal entry over $5,000 posted after day 3<span class="toggle"></span></div>
+        <div class="rule">Two-step review on all revenue reclassifications<span class="toggle"></span></div>
+        <div class="rule">Accrue freight on all COGS invoices<span class="toggle"></span></div>
+        <div class="rule" style="margin-bottom:0">Cash-basis view for the founder, on demand<span class="toggle"></span></div>
+      </div>
+    </div>
+    <div>
+      <h2>Your company's knowledge, written down at last.</h2>
+      <p class="lede">Close checklists, review thresholds, the treatments specific to your business. It all becomes rules that Pastel follows, every month, without drift. New hires inherit it on day one. When someone leaves, the knowledge stays.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="plx" data-speed="0.06" style="left:-130px;bottom:8%;width:300px;height:300px" aria-hidden="true"><i class="gring"></i></div>
+  <div class="wrap">
+    <h2 class="center">Agents do the work. You see all of it.</h2>
+    <p class="lede center">Every module runs on agents that follow your playbook and show their sources. The console shows status, open items and deadlines in one place, and lets you drill from the P&amp;L down to a single journal entry.</p>
+    <div class="agents-grid" style="margin-top:44px">
+      <div class="acard"><h3>Bookkeeping</h3><p>Every line coded by your rules, every feed matched, and the close prepared as the month runs, not on day twelve.</p></div>
+      <div class="acard"><h3>Expense management</h3><p>Supplier invoices read in, checked, caught if duplicated, queued for approval and payment.</p></div>
+      <div class="acard"><h3>Revenue management</h3><p>Invoices out on schedule, reminders sent, money matched to invoices the day it lands.</p></div>
+      <div class="acard"><h3>Reporting &amp; FP&amp;A</h3><p>The board pack built from live numbers, budgets against actuals with causes attached, scenarios on demand.</p></div>
+      <div class="acard"><h3>Ask anything</h3><p>Plain questions answered in seconds, with the source attached to every figure.</p></div>
+      <div class="acard"><h3>Payroll</h3><p>Runs prepared on your calendar, approved by a person, filings kept.</p></div>
+      <div class="acard"><h3>Watching the books</h3><p>Your books monitored against your rules. Problems surface the same day, not at month end.</p></div>
+      <div class="acard" style="background:transparent;box-shadow:none;display:flex;align-items:center"><p style="font-style:italic;color:var(--muted)">Every agent follows your playbook, shows its sources, and sends judgment calls to a human.</p></div>
+    </div>
+    <div style="max-width:960px;margin:48px auto 0"><div class="console">
+      <aside class="side">
+        <div class="lockup">
+          <span class="wordmark">Pastel</span>
+        </div>
+        <h4>Brightline Foods</h4>
+        <div class="client active"><span class="dot g"></span>Overview</div>
+        <div class="client"><span class="dot a"></span>Bookkeeping</div>
+        <div class="client"><span class="dot a"></span>Expenses</div>
+        <div class="client"><span class="dot g"></span>Revenue</div>
+        <div class="client"><span class="dot g"></span>Reporting &amp; FP&amp;A</div>
+        <div class="client"><span class="dot g"></span>Payroll</div>
+      </aside>
+      <section class="main" style="padding:16px 18px 18px">
+        <div class="searchbar">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="5.5" cy="5.5" r="4.5" stroke="#8A8C9E" stroke-width="1.4"/><path d="M9 9l3 3" stroke="#8A8C9E" stroke-width="1.4" stroke-linecap="round"/></svg>
+          Ask anything about your business…
+        </div>
+        <div class="client-head"><b>Brightline Foods</b><span class="badge">March close · in review</span></div>
+        <div class="kpis">
+          <div class="kpi"><div class="l">Cash</div><div class="v">$412,908</div></div>
+          <div class="kpi"><div class="l">Runway</div><div class="v">14.2 mo</div></div>
+          <div class="kpi"><div class="l">Gross margin</div><div class="v">61.3%</div></div>
+        </div>
+        <div class="panel-title">Exceptions · 2 open</div>
+        <div class="exc"><span class="dot a"></span><p><b>Possible duplicate vendor payment.</b> Ck #2291, $14,300 to Northgate Freight.<span class="chip">Sources: 3</span></p></div>
+        <div class="exc"><span class="dot a"></span><p><b>JE over threshold, posted after day 3.</b> $8,750 accrual, needs reviewer sign off.<span class="chip">Sources: 2</span></p></div>
+        <div class="answer">
+          <div class="q">Why did gross margin dip in March?</div>
+          <p class="a"><b>−3.2 pts gross margin.</b> One freight charge · $14,300.</p>
+          <div class="cites"><span class="cite">Ledger row · 4021</span><span class="cite">Invoice #2291</span><span class="cite">Contract · Acme Co.</span></div>
+        </div>
+      </section>
+    </div></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap split">
+    <div>
+      <h2>Every number shows its source.</h2>
+      <p class="lede">Click any figure and see where it came from. Every agent action and every sign-off is logged.</p>
+      <p style="margin-top:20px"><a class="link-cta" href="pastel_security.html">Read about security →</a></p>
+    </div>
+    <div class="receipt">
+      <svg width="100%" viewBox="0 0 470 190">
+        <rect x="10" y="66" width="140" height="48" rx="10" fill="#23253A"/>
+        <text x="80" y="96" font-size="20" font-weight="600" fill="#fff" text-anchor="middle" font-family="Inter">$412,908</text>
+        <path d="M150 78 C 210 40, 250 30, 292 32" stroke="#1D6FC4" stroke-width="1.7" fill="none"/>
+        <path d="M150 90 C 210 90, 250 90, 292 90" stroke="#1D6FC4" stroke-width="1.7" fill="none"/>
+        <path d="M150 102 C 210 140, 250 148, 292 146" stroke="#1D6FC4" stroke-width="1.7" fill="none"/>
+        <circle cx="292" cy="32" r="3.2" fill="#1D6FC4"/><circle cx="292" cy="90" r="3.2" fill="#1D6FC4"/><circle cx="292" cy="146" r="3.2" fill="#1D6FC4"/>
+        <rect x="300" y="14" width="158" height="36" rx="8" fill="#FBFAF7" stroke="#D8D8E2"/>
+        <text x="312" y="30" font-size="11.5" font-weight="600" fill="#23253A" font-family="Inter">Bank feed · Chase …4402</text>
+        <text x="312" y="43" font-size="10" fill="#8A8C9E" font-family="Inter">Balance verified Apr 1</text>
+        <rect x="300" y="72" width="158" height="36" rx="8" fill="#FBFAF7" stroke="#D8D8E2"/>
+        <text x="312" y="88" font-size="11.5" font-weight="600" fill="#23253A" font-family="Inter">Ledger · account 1010</text>
+        <text x="312" y="101" font-size="10" fill="#8A8C9E" font-family="Inter">Reconciled · 0 unmatched</text>
+        <rect x="300" y="128" width="158" height="36" rx="8" fill="#FBFAF7" stroke="#D8D8E2"/>
+        <text x="312" y="144" font-size="11.5" font-weight="600" fill="#23253A" font-family="Inter">Stripe payout · Mar 31</text>
+        <text x="312" y="157" font-size="10" fill="#8A8C9E" font-family="Inter">Settled · $18,220</text>
+      </svg>
+      <div class="auditlog">
+        <div><span>03-31 22:04</span><span class="who-a" style="display:flex;align-items:center;gap:5px">agent · reconcile</span><span>matched 214 transactions</span></div>
+        <div><span>04-01 08:12</span><span class="who-a" style="display:flex;align-items:center;gap:5px">agent · monitor</span><span>flagged Ck #2291 · cited 3 sources</span></div>
+        <div><span>04-01 09:31</span><span class="who-h">j.meadow · reviewer</span><span>signed off March close</span></div>
+      </div>
+      <svg class="bigstamp" width="108" height="108" viewBox="0 0 110 110">
+        <defs><path id="stampArc" d="M55,55 m-37,0 a37,37 0 1,1 74,0 a37,37 0 1,1 -74,0"/></defs>
+        <circle cx="55" cy="55" r="50" fill="none" stroke="#1D6FC4" stroke-width="2"/>
+        <circle cx="55" cy="55" r="26" fill="none" stroke="#1D6FC4" stroke-width="1.2"/>
+        <text font-size="8.6" font-weight="600" fill="#1D6FC4" letter-spacing="2.1">
+          <textPath href="#stampArc">REVIEWED · MEADOW &amp; BIRCH CPA · MARCH CLOSE ·</textPath>
+        </text>
+        <text x="55" y="53" font-size="14" font-weight="600" fill="#1D6FC4" text-anchor="middle">JM</text>
+        <text x="55" y="66" font-size="8" fill="#1D6FC4" text-anchor="middle">Mar 28</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:24px">
+  <div class="wrap">
+    <div class="final">
+      <h2>See Pastel in action.</h2>
+      <p class="lede">A thirty-minute live walkthrough. No prep and no data needed. Just come with your questions.</p>
+      <div style="display:flex;gap:26px;justify-content:center;align-items:center">
+        <a class="btn btn-lg" href="pastel_demo.html">Book a demo</a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <a class="lockup" href="pastel_homepage_v5.html">
+          <img class="blob-svg" src="pastel-orb.png" alt="" width="34" height="34">
+          <span class="wordmark" style="font-size:20px">Pastel</span>
+        </a>
+        <p class="f-tag">Pastel. The autonomous finance department.</p>
+      </div>
+      <div>
+        <h5>Product</h5>
+        <a href="pastel_platform.html">Platform</a><a href="pastel_firms.html">For accounting firms</a><a href="pastel_security.html">Security</a><a href="pastel_demo.html">Book a demo</a>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <a href="#">About</a><a href="#">Careers</a><a href="#">Contact</a>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <a href="#">Privacy policy</a><a href="#">Terms of service</a>
+      </div>
+    </div>
+    <div class="fine">© 2026 Pastel. All rights reserved.</div>
+  </div>
+</footer>
+<script>(function(){var t=document.getElementById("scrolltube");if(!t)return;window.addEventListener("scroll",function(){var h=document.documentElement;t.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+"%";},{passive:true});})();</script>
+<script>
+  (function(){
+    var els = [].slice.call(document.querySelectorAll("[data-speed]"));
+    if(!els.length) return;
+    if(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var vh = window.innerHeight;
+    function frame(){
+      els.forEach(function(el){
+        var host = el.parentElement.getBoundingClientRect();
+        var c = host.top + host.height/2 - vh/2;
+        el.style.transform = "translateY(" + (-c * parseFloat(el.dataset.speed)).toFixed(1) + "px)";
+      });
+    }
+    window.addEventListener("scroll", function(){ requestAnimationFrame(frame); }, {passive:true});
+    window.addEventListener("resize", function(){ vh = window.innerHeight; frame(); });
+    frame();
+  })();
+</script>
+<script>
+  (function(){
+    var box = document.getElementById("heroAnim");
+    var typeEls = { 1: document.getElementById("haType"), 3: document.getElementById("ha2Type") };
+    if(!box || !typeEls[1]) return;
+    var QS = { 1: "Why did gross margin dip in March?", 3: "What's the revenue from our top 5 customers?" };
+    var HOLD = { 1: 9200, 2: 8200, 3: 10000, 4: 9200 };
+    var dots = box.querySelectorAll(".sdot");
+    var timer, next;
+    function setDots(n){ dots.forEach(function(d){ d.classList.toggle("on", d.dataset.s == String(n)); }); }
+    var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if(reduced){ typeEls[1].textContent = QS[1]; if(typeEls[3]) typeEls[3].textContent = QS[3]; box.classList.add("s1","play"); setDots(1); return; }
+    function type(n){
+      var el = typeEls[n], q = QS[n];
+      if(!el) return;
+      var i = 0;
+      clearInterval(timer);
+      timer = setInterval(function(){
+        if(i < q.length){ el.textContent += q.charAt(i); i++; }
+        else clearInterval(timer);
+      }, 48);
+    }
+    function show(n){
+      clearTimeout(next);
+      var switching = /(^| )s\d( |$)/.test(box.className);
+      box.classList.add("switching");
+      setTimeout(function(){
+        box.classList.remove("s1","s2","s3","s4","play","switching");
+        Object.keys(typeEls).forEach(function(k){ if(typeEls[k]) typeEls[k].textContent = ""; });
+        void box.offsetWidth;
+        box.classList.add("s" + n, "play");
+        setDots(n);
+        if(QS[n]) type(n);
+        next = setTimeout(function(){ show(n % 4 + 1); }, HOLD[n]);
+      }, switching ? 280 : 0);
+    }
+    dots.forEach(function(d){ d.addEventListener("click", function(){ show(parseInt(d.dataset.s, 10)); }); });
+    show(1);
+  })();
+</script>
+</body>
+</html>
