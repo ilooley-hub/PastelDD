@@ -36,14 +36,15 @@ const jetBrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Pastel · Organisational Truth for Deal Teams",
+  metadataBase: new URL("https://getpastel.ai"),
+  title: "Pastel · The autonomous finance department",
   description:
-    "Pastel builds the ontology. Ingest your VDR, financial data, and contracts. Get a cited brief in 48 hours.",
+    "Pastel runs your company's finance work end to end. Agents handle the routine; your team reviews and signs.",
   openGraph: {
-    title: "Pastel · Organisational Truth for Deal Teams",
+    title: "Pastel · The autonomous finance department",
     description:
-      "Pastel builds the ontology. Ingest your VDR, financial data, and contracts. Get a cited brief in 48 hours.",
-    images: ["/og.png"],
+      "Pastel runs your company's finance work end to end. Agents handle the routine; your team reviews and signs.",
+    images: ["/og-home.png"],
   },
 }
 
