@@ -398,8 +398,19 @@
   }
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NQ9S6W79');</script>
+<!-- End Google Tag Manager -->
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NQ9S6W79"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <div id="scrolltube"></div>
 <nav class="wrap">
   <div class="nav-inner">
@@ -441,7 +452,7 @@
         <span style="font-size:14px;color:var(--body)">An agent is standing by. So are we.</span>
       </div>
     </div>
-    <form class="form-card" action="https://formspree.io/f/mnjlvlyz" method="POST">
+    <form class="form-card" id="demoForm" action="https://formspree.io/f/mnjlvlyz" method="POST">
       <div style="font-family:var(--head);font-weight:600;font-size:20px">Book your demo</div>
       <label>Full name</label><input type="text" name="name" required>
       <label>Work email</label><input type="email" name="email" placeholder="you@company.com" required>
@@ -495,6 +506,16 @@
     window.addEventListener("scroll", function(){ requestAnimationFrame(frame); }, {passive:true});
     window.addEventListener("resize", function(){ vh = window.innerHeight; frame(); });
     frame();
+  })();
+</script>
+<script>
+  (function(){
+    var f = document.getElementById("demoForm");
+    if(!f) return;
+    f.addEventListener("submit", function(){
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: "generate_lead" });
+    });
   })();
 </script>
 </body>
