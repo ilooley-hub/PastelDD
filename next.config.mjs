@@ -1,5 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async redirects() {
+    return [
+      // old positioning page; the firms page serves this audience now
+      { source: "/fractional-cfo", destination: "/firms", permanent: true },
+    ];
+  },
   async rewrites() {
     return {
       // beforeFiles wins over app routes: the redesigned static pages take over
@@ -12,6 +18,7 @@ const nextConfig = {
         { source: "/firms", destination: "/pastel_firms.html" },
         { source: "/book-a-demo", destination: "/pastel_demo.html" },
         { source: "/due-diligence", destination: "/pastel_due_diligence.html" },
+        { source: "/thanks", destination: "/thanks.html" },
       ],
     };
   },
