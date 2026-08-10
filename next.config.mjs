@@ -11,6 +11,7 @@ const nextConfig = {
         { source: "/platform", destination: "/pastel_platform.html" },
         { source: "/firms", destination: "/pastel_firms.html" },
         { source: "/book-a-demo", destination: "/pastel_demo.html" },
+        { source: "/due-diligence", destination: "/pastel_due_diligence.html" },
       ],
     };
   },

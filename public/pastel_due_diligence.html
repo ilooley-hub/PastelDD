@@ -3,24 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Security and Trust. Pastel.</title>
+<title>Due diligence, with receipts. Pastel.</title>
 <!-- meta:start -->
 <meta name="description" content="Security at Pastel: encrypted everywhere, isolated per company, every action logged, and never used to train anyone&#x27;s models.">
 <link rel="icon" type="image/png" href="/pastel-orb.png">
 <link rel="apple-touch-icon" href="/pastel-orb.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Pastel">
-<meta property="og:title" content="Security and Trust. Pastel.">
+<meta property="og:title" content="Due diligence, with receipts. Pastel.">
 <meta property="og:description" content="Security at Pastel: encrypted everywhere, isolated per company, every action logged, and never used to train anyone&#x27;s models.">
 <meta property="og:image" content="https://getpastel.ai/og-home.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:url" content="https://getpastel.ai/security">
+<meta property="og:url" content="https://getpastel.ai/due-diligence">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Security and Trust. Pastel.">
+<meta name="twitter:title" content="Due diligence, with receipts. Pastel.">
 <meta name="twitter:description" content="Security at Pastel: encrypted everywhere, isolated per company, every action logged, and never used to train anyone&#x27;s models.">
 <meta name="twitter:image" content="https://getpastel.ai/og-home.png">
-<link rel="canonical" href="https://getpastel.ai/security">
+<link rel="canonical" href="https://getpastel.ai/due-diligence">
 <!-- meta:end -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -350,6 +350,31 @@
   .nd-sep{display:block;height:1px;background:rgba(16,17,20,.07);margin:8px 4px}
   @media (max-width:720px){.nav-drop{display:none}}
   html{overflow-x:clip}
+  /* ---- due diligence page ---- */
+  .dd-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:44px}
+  .dd-step{background:#fff;border:1px solid #ECECE9;border-radius:14px;padding:20px 22px;box-shadow:0 1px 2px rgba(16,17,20,.05)}
+  .dd-step .n{display:inline-flex;width:26px;height:26px;border-radius:50%;align-items:center;justify-content:center;font-weight:700;font-size:12.5px;color:#fff;margin-bottom:12px}
+  .dd-step h3{font-size:15.5px;font-weight:600;margin-bottom:6px}
+  .dd-step p{font-size:13.5px;line-height:1.55;color:#52545C}
+  .dd-find{background:#fff;border:1px solid #ECECE9;border-radius:16px;padding:22px 24px;box-shadow:0 1px 2px rgba(16,17,20,.05)}
+  .dd-find h3{display:flex;align-items:center;gap:10px;font-size:15.5px;font-weight:600;margin-bottom:14px}
+  .dd-find h3 i{width:11px;height:11px;border-radius:47% 53% 55% 45%/48% 44% 56% 52%;flex:none}
+  .dd-row{display:flex;justify-content:space-between;align-items:center;gap:12px;background:#FAFAF8;border:1px solid #F0F0ED;border-radius:9px;padding:9px 13px;margin-top:8px;font-size:13px;color:#52545C}
+  .dd-row em{font-style:normal;font-size:11px;font-weight:700;white-space:nowrap;border-radius:10px;padding:2px 9px;color:#A8761F;background:rgba(168,118,31,.12);border:1px solid rgba(168,118,31,.28)}
+  .dd-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+  .dd-qa{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:44px}
+  .dd-card{background:#fff;border:1px solid #ECECE9;border-radius:18px;padding:24px 28px;box-shadow:0 8px 24px rgba(16,17,20,.07)}
+  .dd-q{display:inline-block;background:#F1F1EE;border-radius:14px;padding:8px 14px;font-size:14px;font-weight:500;margin-bottom:14px}
+  .dd-af{display:block;font-family:var(--head);font-weight:600;font-size:34px;letter-spacing:-.025em;color:#101114}
+  .dd-al{display:block;font-size:14px;color:#52545C;margin-top:3px}
+  .dd-cites{margin-top:14px}
+  .dd-cites span{display:inline-block;font-size:11px;color:#1F7F9E;border-bottom:1px solid rgba(31,127,158,.45);margin-right:12px;font-weight:500}
+  .dd-vault{margin:28px;border-radius:56px 40px 64px 44px/44px 60px 40px 64px;background:#101114;padding:64px 24px;position:relative;overflow:hidden}
+  .dd-vault h2{color:#fff}
+  .dd-vault .lede{color:#B9BBC2}
+  .dd-cta{text-align:center;padding:40px 0 20px}
+  @media (max-width:1080px){.dd-steps{grid-template-columns:1fr 1fr}.dd-grid3{grid-template-columns:1fr}.dd-qa{grid-template-columns:1fr}}
+  @media (max-width:720px){.dd-steps{grid-template-columns:1fr}}
 </style>
 
 <style>
@@ -461,88 +486,87 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </nav>
 
-<section class="vault">
-  <i class="sd-glow g1" aria-hidden="true"></i><i class="sd-glow g2" aria-hidden="true"></i>
-  <div class="wrap vgrid">
-    <div>
-      <h1 style="color:#fff">Security is the <em class="hl" style="color:#7CC4DC">foundation.</em></h1>
-      <p class="lede" style="color:#B9BBC2">Pastel holds financial data for many companies at once. That is a responsibility we designed for from the first line of code: encrypted, isolated, audited, and never used to train anyone's models.</p>
-    </div>
-    <div class="shield" aria-hidden="true">
-      <i class="sring sr1"></i><i class="sring sr2"></i><i class="sring sr3"></i>
-      <img src="pastel-orb.png" alt="" width="72" height="72">
+<div class="wrap page-hero" style="position:relative">
+  <h1>Due diligence, <em class="hl">with receipts.</em></h1>
+  <p class="lede">Built for private equity and acquirers. Point Pastel at the data room and ask. Findings arrive quantified, and every answer cites the ledger line, invoice or contract behind it.</p>
+  <div style="margin-top:26px"><a class="btn btn-lg" href="/book-a-demo">Book a demo</a></div>
+</div>
+
+<section style="padding-top:12px">
+  <div class="wrap">
+    <div class="dd-steps">
+      <div class="dd-step"><span class="n" style="background:#4FB4EE">1</span><h3>Drop in the data room</h3><p>VDR exports, financials, contracts, the cap table. Messy is fine.</p></div>
+      <div class="dd-step"><span class="n" style="background:#8FE3D4">2</span><h3>One picture forms</h3><p>Counterparties, contracts, invoices and revenue resolve into a single reconciled view of the target.</p></div>
+      <div class="dd-step"><span class="n" style="background:#B69BD9">3</span><h3>Findings, quantified</h3><p>Material issues surface on their own, each with the number attached.</p></div>
+      <div class="dd-step"><span class="n" style="background:#F4C9A1">4</span><h3>Ask anything</h3><p>A cited answer in seconds, traceable to its source document.</p></div>
     </div>
   </div>
 </section>
 
-<section style="padding-top:12px">
+<section>
   <div class="wrap">
-    <div class="sec-grid" style="margin-top:28px">
-      <div class="sec-card">
-        <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F7F9E" stroke-width="1.7"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>Access, controlled</h3>
-        <p>SSO, two-factor, and role-based permissions down to the account level. People see exactly what their role allows, nothing more.</p>
+    <h2 class="center">Findings that come with numbers.</h2>
+    <p class="lede center" style="margin:0 auto">Not a list of concerns. Quantified issues your team can take straight into the price conversation.</p>
+    <div class="dd-grid3">
+      <div class="dd-find">
+        <h3><i style="background:#4FB4EE"></i>Earnings quality</h3>
+        <div class="dd-row"><span>Setup fees recognised at invoice, not deferred</span><em>restate −$1.88M EBITDA</em></div>
+        <div class="dd-row"><span>CPI escalators never applied to renewals</span><em>revenue leakage</em></div>
+        <div class="dd-row"><span>DSO compressed sharply pre-LOI</span><em>NWC peg +$1.7M</em></div>
       </div>
-      <div class="sec-card">
-        <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F7F9E" stroke-width="1.7"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="19" cy="18" r="3"/></svg>A complete audit trail</h3>
-        <p>Every agent action, every human sign-off, every data access. Logged and reviewable. When an auditor asks how you know, the answer is one click.</p>
+      <div class="dd-find">
+        <h3><i style="background:#B69BD9"></i>Contract risk</h3>
+        <div class="dd-row"><span>Change-of-control triggers found</span><em>14 of 312 MSAs</em></div>
+        <div class="dd-row"><span>Top customers can terminate on a PE acquisition</span><em>44% of ARR</em></div>
+        <div class="dd-row"><span>Indemnity caps below market</span><em>$2.1M exposure</em></div>
       </div>
-      <div class="sec-card">
-        <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F7F9E" stroke-width="1.7"><path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5z"/></svg>Encryption everywhere</h3>
-        <p>AES-256 at rest, TLS 1.3 in transit, keys managed and rotated.</p>
-      </div>
-      <div class="sec-card">
-        <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F7F9E" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>Compliance</h3>
-        <p>GDPR-ready data handling, data processing agreements on request.</p>
-        
-      </div>
-      <div class="sec-card" style="grid-column:1 / -1">
-        <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F7F9E" stroke-width="1.7"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>Your data belongs to you</h3>
-        <p>Pastel never trains shared models on your data, never sells it, and supports full export and deletion on request. Each company's data is isolated in its own space; no mixing, ever.</p>
+      <div class="dd-find">
+        <h3><i style="background:#F4C9A1"></i>Concentration</h3>
+        <div class="dd-row"><span>Top 3 customers</span><em>38% of ARR</em></div>
+        <div class="dd-row"><span>Revenue dependent on three key people</span><em>$12.8M ARR</em></div>
+        <div class="dd-row"><span>Auto-renewal terms off the master template</span><em>7 enterprise accts</em></div>
       </div>
     </div>
   </div>
 </section>
 
 <section class="wash-sky">
-  <div class="wrap split">
-    <div>
-      <h2>What the audit trail looks like.</h2>
-      <p class="lede">Agents leave receipts. People leave signatures. Every figure can be walked back to its sources, and every action, human or not, is on the record.</p>
-    </div>
-    <div class="receipt">
-      <svg width="100%" viewBox="0 0 470 190">
-        <rect x="10" y="66" width="140" height="48" rx="10" fill="#23253A"/>
-        <text x="80" y="96" font-size="20" font-weight="600" fill="#fff" text-anchor="middle" font-family="Inter">$412,908</text>
-        <path d="M150 78 C 210 40, 250 30, 292 32" stroke="#1F7F9E" stroke-width="1.7" fill="none"/>
-        <path d="M150 90 C 210 90, 250 90, 292 90" stroke="#1F7F9E" stroke-width="1.7" fill="none"/>
-        <path d="M150 102 C 210 140, 250 148, 292 146" stroke="#1F7F9E" stroke-width="1.7" fill="none"/>
-        <circle cx="292" cy="32" r="3.2" fill="#1D6FC4"/><circle cx="292" cy="90" r="3.2" fill="#1D6FC4"/><circle cx="292" cy="146" r="3.2" fill="#1D6FC4"/>
-        <rect x="300" y="14" width="158" height="36" rx="8" fill="#FBFAF7" stroke="#D8D8E2"/>
-        <text x="312" y="30" font-size="11.5" font-weight="600" fill="#23253A" font-family="Inter">Bank feed · Chase …4402</text>
-        <text x="312" y="43" font-size="10" fill="#8A8C9E" font-family="Inter">Balance verified Apr 1</text>
-        <rect x="300" y="72" width="158" height="36" rx="8" fill="#FBFAF7" stroke="#D8D8E2"/>
-        <text x="312" y="88" font-size="11.5" font-weight="600" fill="#23253A" font-family="Inter">Ledger · account 1010</text>
-        <text x="312" y="101" font-size="10" fill="#8A8C9E" font-family="Inter">Reconciled · 0 unmatched</text>
-        <rect x="300" y="128" width="158" height="36" rx="8" fill="#FBFAF7" stroke="#D8D8E2"/>
-        <text x="312" y="144" font-size="11.5" font-weight="600" fill="#23253A" font-family="Inter">Stripe payout · Mar 31</text>
-        <text x="312" y="157" font-size="10" fill="#8A8C9E" font-family="Inter">Settled · $18,220</text>
-      </svg>
-      <div class="auditlog">
-        <div><span>03-31 22:04</span><span class="who-a" style="display:flex;align-items:center;gap:5px">agent · reconcile</span><span>matched 214 transactions</span></div>
-        <div><span>04-01 08:12</span><span class="who-a" style="display:flex;align-items:center;gap:5px">agent · monitor</span><span>flagged Ck #2291 · cited 3 sources</span></div>
-        <div><span>04-01 09:31</span><span class="who-h">j.meadow · reviewer</span><span>signed off March close</span></div>
+  <div class="wrap">
+    <h2 class="center">Ask the deal anything.</h2>
+    <p class="lede center" style="margin:0 auto">Diligence stops being a document hunt. Ask in your words; the answer comes back with its evidence attached.</p>
+    <div class="dd-qa">
+      <div class="dd-card">
+        <span class="dd-q">Is revenue as recurring as the deck says?</span>
+        <b class="dd-af">38% sits with 3 customers</b>
+        <span class="dd-al">Two carry change-of-control clauses</span>
+        <div class="dd-cites"><span>Invoices · 24 mo</span><span>Contracts</span><span>CRM export</span></div>
       </div>
-      <svg class="bigstamp" width="108" height="108" viewBox="0 0 110 110">
-        <defs><path id="stampArc" d="M55,55 m-37,0 a37,37 0 1,1 74,0 a37,37 0 1,1 -74,0"/></defs>
-        <circle cx="55" cy="55" r="50" fill="none" stroke="#1F7F9E" stroke-width="2"/>
-        <circle cx="55" cy="55" r="26" fill="none" stroke="#1F7F9E" stroke-width="1.2"/>
-        <text font-size="8.6" font-weight="600" fill="#1D6FC4" letter-spacing="2.1">
-          <textPath href="#stampArc">REVIEWED · MEADOW &amp; BIRCH CPA · MARCH CLOSE ·</textPath>
-        </text>
-        <text x="55" y="53" font-size="14" font-weight="600" fill="#1D6FC4" text-anchor="middle">JM</text>
-        <text x="55" y="66" font-size="8" fill="#1D6FC4" text-anchor="middle">Mar 28</text>
-      </svg>
+      <div class="dd-card">
+        <span class="dd-q">What restates EBITDA?</span>
+        <b class="dd-af">−$1.88M</b>
+        <span class="dd-al">Setup fees deferred, escalators applied</span>
+        <div class="dd-cites"><span>GL entries</span><span>MSAs</span><span>Revenue schedules</span></div>
+      </div>
     </div>
+  </div>
+</section>
+
+<section style="padding:24px 0">
+  <div class="dd-vault">
+    <i class="sd-glow g1" aria-hidden="true"></i><i class="sd-glow g2" aria-hidden="true"></i>
+    <div class="wrap" style="position:relative;z-index:1;text-align:center">
+      <h2>Deal data, locked down.</h2>
+      <p class="lede" style="margin:0 auto">Isolated per deal, encrypted everywhere, every access logged, and never used to train anyone's models.</p>
+      <p style="margin-top:22px"><a class="link-cta" style="color:#7CC4DC" href="/security">Read the full security overview →</a></p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:8px">
+  <div class="wrap dd-cta">
+    <h2>See Pastel on a deal.</h2>
+    <p class="lede" style="margin:0 auto">A thirty-minute live walkthrough. No prep and no data needed. Just come with your questions.</p>
+    <div style="margin-top:28px"><a class="btn btn-lg" href="/book-a-demo">Book a demo</a></div>
   </div>
 </section>
 
