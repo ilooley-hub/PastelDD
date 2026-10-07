@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
 Sitemap: https://getpastel.ai/sitemap.xml
+Sitemap: https://getpastel.ai/blog/sitemap.xml

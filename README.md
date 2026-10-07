@@ -34,3 +34,11 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Blog
+
+`/blog` and `/blog/<slug>` show articles written and published in Pastel HQ (the Content agent writes, Ilan clicks Publish). The site reads HQ's public feed, which only returns published articles:
+
+- `src/lib/hq-articles.ts` fetches `https://sdr.pastelai.tech/api/public/articles` (override with the `PASTEL_HQ_URL` env var) and refreshes every 5 minutes, so publishing in HQ needs no redeploy.
+- If HQ can't be reached, the blog shows an empty state; the rest of the site is unaffected.
+- `/blog/sitemap.xml` lists the articles and is referenced from `robots.txt`.
