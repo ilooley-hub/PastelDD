@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { formatDate, getArticle, REVALIDATE_SECONDS } from "@/lib/hq-articles"
+import { formatDate, getArticle, isTitleCard, REVALIDATE_SECONDS } from "@/lib/hq-articles"
 
 export const revalidate = REVALIDATE_SECONDS
 // Articles are built on first visit, then refreshed every 5 minutes.
@@ -18,6 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = `${a.title} · Pastel`
   const description = a.description ?? undefined
   const url = `/blog/${a.slug}`
+  const image = a.coverUrl ?? "/og-home.png"
   return {
     title,
     description,
@@ -30,9 +31,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url,
       publishedTime: a.publishedAt ?? undefined,
       modifiedTime: a.updatedAt,
-      images: ["/og-home.png"],
+      images: [{ url: image, width: 1200, height: 630 }],
     },
-    twitter: { card: "summary_large_image", title: a.title, description, images: ["/og-home.png"] },
+    twitter: { card: "summary_large_image", title: a.title, description, images: [image] },
   }
 }
 
@@ -48,7 +49,7 @@ export default async function ArticlePage({ params }: Props) {
     datePublished: a.publishedAt ?? undefined,
     dateModified: a.updatedAt,
     mainEntityOfPage: `https://getpastel.ai/blog/${a.slug}`,
-    image: "https://getpastel.ai/og-home.png",
+    image: a.coverUrl ?? "https://getpastel.ai/og-home.png",
     author: { "@type": "Organization", name: "Pastel", url: "https://getpastel.ai" },
     publisher: { "@type": "Organization", name: "Pastel", logo: { "@type": "ImageObject", url: "https://getpastel.ai/pastel-orb.png" } },
   }
@@ -65,6 +66,10 @@ export default async function ArticlePage({ params }: Props) {
         <p className="pb-meta" style={{ marginTop: 18 }}>
           {formatDate(a.publishedAt)} · {a.readingMinutes} min read
         </p>
+        {!isTitleCard(a.coverUrl) && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img className="pb-cover" src={a.coverUrl} alt="" />
+        )}
       </header>
 
       {/* HQ turns Markdown into HTML after escaping everything, so this holds no raw HTML from a draft. */}
