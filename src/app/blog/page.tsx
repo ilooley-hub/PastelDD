@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { formatDate, listArticles, REVALIDATE_SECONDS } from "@/lib/hq-articles"
+import { formatDate, isTitleCard, listArticles, REVALIDATE_SECONDS } from "@/lib/hq-articles"
 
 export const revalidate = REVALIDATE_SECONDS
 
@@ -33,6 +33,10 @@ export default async function BlogIndex() {
           <div className="pb-list">
             {articles.map((a, i) => (
               <Link key={a.slug} href={`/blog/${a.slug}`} className={i === 0 ? "pb-card pb-featured" : "pb-card"}>
+                {!isTitleCard(a.coverUrl) && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img className="pb-card-img" src={a.coverUrl} alt="" loading={i === 0 ? "eager" : "lazy"} />
+                )}
                 <span className="pb-meta">
                   {formatDate(a.publishedAt)} · {a.readingMinutes} min read
                 </span>

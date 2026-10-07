@@ -12,6 +12,8 @@ export type ArticleSummary = {
   description: string | null
   keyword: string | null
   readingMinutes: number
+  /** The image Ilan picked in HQ, or HQ's branded title card. Older HQ versions omit it. */
+  coverUrl?: string
   publishedAt: string | null
   updatedAt: string
 }
@@ -46,4 +48,9 @@ export async function getArticle(slug: string): Promise<Article | null> {
 export function formatDate(iso: string | null) {
   if (!iso) return ""
   return new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })
+}
+
+/** HQ's automatic title card repeats the title, so pages only show picked images; link previews use either. */
+export function isTitleCard(url: string | undefined) {
+  return !url || /\/api\/public\/articles\/[^/]+\/cover$/.test(url)
 }
