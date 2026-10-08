@@ -459,6 +459,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <label>Work email</label><input type="email" name="email" placeholder="you@company.com" required>
       <label>What eats the most hours today?</label>
       <select name="pain"><option>Reconciliation</option><option>Month-end close</option><option>Reporting</option><option>Client questions</option><option>Payroll</option><option>Other</option></select>
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
       <button class="btn btn-lg" type="submit">Book my demo</button>
     </form>
   </div>
@@ -515,8 +516,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     f.addEventListener("submit", function(){
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: "generate_lead" });
+      // Also send it to Pastel HQ (research, drafted reply, Attio). Formspree still gets it as before.
+      var el = f.elements;
+      if (window.pastelSendLead) window.pastelSendLead({ name: el["name"].value, email: el["email"].value, pain: el["pain"].value, _gotcha: el["_gotcha"].value });
     });
   })();
 </script>
+<script src="/attribution.js" defer></script>
 </body>
 </html>

@@ -79,6 +79,8 @@ export default function RootLayout({
         </noscript>
         {children}
         <Analytics />
+        {/* How visitors arrived, for demo requests in Pastel HQ (public/attribution.js). */}
+        <Script src="/attribution.js" strategy="afterInteractive" />
       </body>
     </html>
   )
