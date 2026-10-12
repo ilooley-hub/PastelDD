@@ -1,8 +1,9 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { formatDate, isTitleCard, listArticles, REVALIDATE_SECONDS } from "@/lib/hq-articles"
+import { formatDate, isTitleCard, listArticles } from "@/lib/hq-articles"
 
-export const revalidate = REVALIDATE_SECONDS
+// Re-checks HQ every minute (keep in step with REVALIDATE_SECONDS in lib/hq-articles).
+export const revalidate = 60
 
 const TITLE = "Blog · Pastel"
 const DESCRIPTION =

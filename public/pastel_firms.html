@@ -1201,7 +1201,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var el = document.getElementById("jobword");
     if(!el) return;
     if(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    var i = 0;
+    // Start from the word already on the page, so it isn't shown twice in a row.
+    var i = Math.max(0, words.indexOf(el.textContent.replace(/\.$/, "").trim()));
     setInterval(function(){
       el.classList.add("rot-out");
       setTimeout(function(){

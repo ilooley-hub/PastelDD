@@ -1,10 +1,10 @@
 // Blog articles live in Pastel HQ (written there, published with one click).
 // The site reads them from HQ's public feed, which only ever returns published
-// articles. Pages re-check every 5 minutes, so publishing or unpublishing in
+// articles. Pages re-check every minute, so publishing or unpublishing in
 // HQ shows up here without a redeploy.
 
 const HQ_URL = (process.env.PASTEL_HQ_URL ?? "https://sdr.pastelai.tech").replace(/\/+$/, "")
-export const REVALIDATE_SECONDS = 300
+export const REVALIDATE_SECONDS = 60
 
 export type ArticleSummary = {
   slug: string
