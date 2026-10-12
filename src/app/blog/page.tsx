@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { formatDate, isTitleCard, listArticles } from "@/lib/hq-articles"
+import { formatDate, listArticles } from "@/lib/hq-articles"
 
 // Re-checks HQ every minute (keep in step with REVALIDATE_SECONDS in lib/hq-articles).
 export const revalidate = 60
@@ -34,7 +34,8 @@ export default async function BlogIndex() {
           <div className="pb-list">
             {articles.map((a, i) => (
               <Link key={a.slug} href={`/blog/${a.slug}`} className={i === 0 ? "pb-card pb-featured" : "pb-card"}>
-                {!isTitleCard(a.coverUrl) && (
+                {/* The picked image, or HQ's branded title card when none is picked. */}
+                {a.coverUrl && (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img className="pb-card-img" src={a.coverUrl} alt="" loading={i === 0 ? "eager" : "lazy"} />
                 )}
