@@ -1,9 +1,10 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { formatDate, getArticle, isTitleCard, REVALIDATE_SECONDS } from "@/lib/hq-articles"
+import { formatDate, getArticle, isTitleCard } from "@/lib/hq-articles"
 
-export const revalidate = REVALIDATE_SECONDS
+// Re-checks HQ every minute (keep in step with REVALIDATE_SECONDS in lib/hq-articles).
+export const revalidate = 60
 // Articles are built on first visit, then refreshed every 5 minutes.
 export const dynamicParams = true
 export function generateStaticParams() {

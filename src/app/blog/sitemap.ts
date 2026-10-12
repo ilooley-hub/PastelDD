@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next"
 import { listArticles } from "@/lib/hq-articles"
 
 // Served at /blog/sitemap.xml and listed in robots.txt next to the main sitemap.
-export const revalidate = 300
+export const revalidate = 60
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const articles = await listArticles()
