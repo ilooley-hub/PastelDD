@@ -396,6 +396,83 @@
     .sec-grid{grid-template-columns:1fr}
     .page-hero h1{font-size:36px}
   }
+
+  /* ============ BOOK A DEMO (Oct 2026) ============ */
+  .bd{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);grid-template-areas:"intro form" "agenda form";column-gap:64px;row-gap:8px;align-items:start;position:relative;z-index:1}
+  .bd-intro{grid-area:intro;padding-top:24px}
+  .bd-form{grid-area:form;position:sticky;top:24px}
+  .bd-agenda{grid-area:agenda}
+  .bd-intro h1{font-size:50px;margin-bottom:18px}
+  .bd-facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+  .bd-fact{display:inline-flex;align-items:center;gap:8px;padding:7px 13px;border-radius:999px;background:rgba(255,255,255,.75);border:1px solid rgba(35,37,58,.08);font-size:13.5px;font-weight:500;color:var(--ink)}
+  .bd-fact i{width:8px;height:8px;border-radius:47% 53% 55% 45%/48% 44% 56% 52%;display:inline-block}
+  .bd-agenda h3{font-family:var(--head);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:40px 0 16px}
+  .bd-steps{display:grid;gap:14px}
+  .bd-step{display:grid;grid-template-columns:44px 1fr minmax(0,230px);gap:16px;align-items:center;background:rgba(255,255,255,.82);border:1px solid rgba(35,37,58,.06);border-radius:14px 14px 14px 30px;padding:16px 18px;box-shadow:var(--shadow)}
+  .bd-num{width:36px;height:36px;border-radius:47% 53% 55% 45%/48% 44% 56% 52%;display:grid;place-items:center;font-family:var(--head);font-weight:600;font-size:15px}
+  .bd-step .t{font-family:var(--head);font-weight:600;font-size:16px;margin-bottom:3px}
+  .bd-step .d{font-size:13.5px;line-height:1.5;color:var(--body)}
+  .bd-mini{background:#fff;border:1px solid rgba(35,37,58,.07);border-radius:10px;padding:8px;font-size:11.5px;display:grid;gap:5px}
+  .bd-mini .r{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:5px 7px;border-radius:7px;background:#FBFAF7;white-space:nowrap}
+  .bd-chip{font-size:10.5px;font-weight:600;padding:2px 7px;border-radius:999px}
+  .bd-chip.ok{background:var(--mint);color:var(--green)}
+  .bd-chip.wait{background:var(--sky);color:var(--blue)}
+  .bd-q{padding:6px 9px;border-radius:9px;background:#FBFAF7;border:1px solid rgba(35,37,58,.08)}
+  .bd-a{padding:6px 9px;border-radius:9px;background:var(--lilac);font-weight:600}
+  .bd-a small{display:block;font-weight:500;color:var(--body);font-size:10.5px;margin-top:2px}
+  .bd-self{margin-top:26px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:14.5px;color:var(--body)}
+
+  .bd-card{background:#fff;border-radius:16px 16px 16px 40px;box-shadow:0 18px 50px rgba(16,17,20,.10),0 1px 2px rgba(16,17,20,.05);border:1px solid rgba(35,37,58,.06);overflow:hidden}
+  .bd-head{padding:22px 30px 18px;background:linear-gradient(120deg,rgba(220,238,251,.9),rgba(234,227,246,.7) 55%,rgba(251,231,212,.6));border-bottom:1px solid rgba(35,37,58,.06)}
+  .bd-head .ttl{font-family:var(--head);font-weight:600;font-size:21px}
+  .bd-stepper{display:flex;align-items:center;gap:10px;margin-top:12px;font-size:13px;font-weight:600;color:var(--muted)}
+  .bd-stepper .s{display:inline-flex;align-items:center;gap:7px}
+  .bd-stepper .s b{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;background:rgba(16,17,20,.08);color:var(--body)}
+  .bd-stepper .s.on{color:var(--ink)}
+  .bd-stepper .s.on b{background:var(--ink);color:#fff}
+  .bd-stepper .s.done b{background:var(--green);color:#fff}
+  .bd-stepper .line{flex:1;height:2px;border-radius:2px;background:rgba(16,17,20,.1)}
+  .bd-body{padding:6px 30px 30px}
+  .bd-body label,.bd-body .lbl{display:block;font-size:13px;font-weight:600;margin:18px 0 7px}
+  .bd-body input[type=text],.bd-body input[type=email],.bd-body select{width:100%;padding:12px 13px;border:1px solid rgba(35,37,58,.16);border-radius:9px;font-family:inherit;font-size:14.5px;background:#fff;color:var(--ink)}
+  .bd-body input:focus,.bd-body select:focus{outline:2px solid var(--blue);outline-offset:0;border-color:var(--blue)}
+  .bd-two{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+  .bd-pills{display:flex;flex-wrap:wrap;gap:8px}
+  .bd-pills label{margin:0;font-weight:500;font-size:14px;cursor:pointer}
+  .bd-pills input{position:absolute;opacity:0;pointer-events:none}
+  .bd-pills span{display:inline-block;padding:9px 14px;border-radius:999px;border:1px solid rgba(35,37,58,.16);background:#fff;transition:background .15s,border-color .15s}
+  .bd-pills input:checked+span{background:var(--ink);border-color:var(--ink);color:#fff}
+  .bd-pills input:focus-visible+span{outline:2px solid var(--blue);outline-offset:2px}
+  .bd-submit{width:100%;margin-top:26px;border:none;cursor:pointer;font-family:inherit;text-align:center}
+  .bd-fine{margin-top:12px;font-size:12.5px;color:var(--muted);text-align:center}
+  .bd-err{margin-top:12px;font-size:13px;color:#B4472F;display:none}
+  .bd-step2{display:none}
+  .bd-card.picked .bd-step1{display:none}
+  .bd-card.picked .bd-step2{display:block}
+  .bd-ok{display:flex;gap:12px;align-items:flex-start;margin-top:22px;padding:14px 16px;border-radius:12px;background:var(--mint)}
+  .bd-ok .tick{flex:none;width:26px;height:26px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:700}
+  .bd-ok .t{font-weight:600;font-size:15px}
+  .bd-ok .d{font-size:13.5px;color:var(--body);margin-top:2px;line-height:1.5}
+  .bd-cal{margin-top:18px}
+  .bd-cal iframe{width:100%;height:600px;border:0;border-radius:12px;background:#FBFAF7}
+  .bd-calbtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;text-decoration:none}
+  .bd-after{margin-top:20px;padding-top:18px;border-top:1px solid rgba(35,37,58,.08);font-size:13.5px;color:var(--body)}
+  .bd-after .links{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .bd-after .links a{padding:7px 12px;border-radius:999px;background:#FBFAF7;border:1px solid rgba(35,37,58,.08);color:var(--ink);text-decoration:none;font-weight:500}
+  .bd-after .links a:hover{border-color:var(--blue);color:var(--blue)}
+  @media (max-width:1080px){
+    .bd{grid-template-columns:1fr;grid-template-areas:"intro" "form" "agenda";row-gap:28px}
+    .bd-form{position:static}
+  }
+  @media (max-width:720px){
+    .bd-intro{padding-top:0}
+    .bd-intro h1{font-size:36px}
+    .bd-step{grid-template-columns:40px 1fr}
+    .bd-mini{grid-column:1/-1}
+    .bd-head,.bd-body{padding-left:20px;padding-right:20px}
+    .bd-two{grid-template-columns:1fr}
+    .bd-cal iframe{height:640px}
+  }
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 <!-- Google Tag Manager -->
@@ -405,6 +482,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-NQ9S6W79');</script>
 <!-- End Google Tag Manager -->
+<link rel="stylesheet" href="/site.css">
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -414,7 +492,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div id="scrolltube"></div>
 <nav class="wrap">
   <div class="nav-inner">
-    <a class="lockup" href="pastel_homepage_v5.html">
+    <a class="lockup" href="/">
       <img class="blob-svg" src="pastel-orb.png" alt="" width="38" height="38">
       <span class="wordmark">Pastel</span>
     </a>
@@ -428,7 +506,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a href="pastel_job_revenue.html"><i class="nd-dot" style="background:#8FE3D4"></i>Revenue management</a>
         <a href="pastel_job_fpa.html"><i class="nd-dot" style="background:#B69BD9"></i>Reporting &amp; FP&amp;A</a>
         <a href="pastel_job_payroll.html"><i class="nd-dot" style="background:#8FA8EC"></i>Payroll</a>
-      </span></span><a href="pastel_firms.html">For accounting firms</a><a href="pastel_security.html">Security</a><a href="/blog">Blog</a>
+      </span></span><a href="/companies">For companies</a><a href="pastel_security.html">Security</a><a href="/blog">Blog</a>
     </div>
     <a class="login" href="https://app.getpastel.ai">Log in</a>
     <a class="btn" href="pastel_demo.html">Book a demo</a>
@@ -438,37 +516,108 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section style="padding-top:40px;position:relative;overflow:hidden">
   <div class="vsea" aria-hidden="true"><video autoplay muted loop playsinline poster="video-sea.png"><source src="video-sea.mp4" type="video/mp4"></video></div>
   <div class="blob-outline" style="width:260px;height:260px;right:-70px;top:60px;transform:rotate(18deg)"></div>
-  <div class="wrap split" style="align-items:start">
-    <div style="padding-top:24px">
-      <h1 style="font-size:46px">See Pastel <em class="hl">in action.</em></h1>
-      <p class="sub">A thirty-minute live walkthrough of what Pastel can do. No prep and no data needed. Just come with your questions.</p>
-      <div class="expect">
-        <div class="rrow"><span>Length</span><span class="leader"></span><span class="val">30 minutes</span></div>
-        <div class="rrow"><span>Format</span><span class="leader"></span><span class="val">Live demo</span></div>
-        <div class="rrow"><span>Bring</span><span class="leader"></span><span class="val">Just your questions</span></div>
-        <div class="rrow"><span>Leave with</span><span class="leader"></span><span class="val">A clear picture of what Pastel does</span></div>
-      </div>
-      <div style="margin-top:36px;display:flex;gap:10px;align-items:center">
-        <span style="font-size:14px;color:var(--body)">An agent is standing by. So are we.</span>
+  <div class="wrap bd">
+    <div class="bd-intro">
+      <div class="eyebrow">Book a demo</div>
+      <h1>See Pastel <em class="hl">in action.</em></h1>
+      <p class="sub">A thirty-minute live walkthrough, shaped around how your practice works today. No prep and no data needed. Just come with your questions.</p>
+      <div class="bd-facts">
+        <span class="bd-fact"><i style="background:#4FB4EE"></i>30 minutes</span>
+        <span class="bd-fact"><i style="background:#8FE3D4"></i>Live walkthrough</span>
+        <span class="bd-fact"><i style="background:#F4C9A1"></i>No data needed</span>
       </div>
     </div>
-    <form class="form-card" id="demoForm" action="https://formspree.io/f/mnjlvlyz" method="POST">
-      <input type="hidden" name="_next" value="https://getpastel.ai/thanks">
-      <div style="font-family:var(--head);font-weight:600;font-size:20px">Book your demo</div>
-      <label>Full name</label><input type="text" name="name" required>
-      <label>Work email</label><input type="email" name="email" placeholder="you@company.com" required>
-      <label>What eats the most hours today?</label>
-      <select name="pain"><option>Reconciliation</option><option>Month-end close</option><option>Reporting</option><option>Client questions</option><option>Payroll</option><option>Other</option></select>
-      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
-      <button class="btn btn-lg" type="submit">Book my demo</button>
-    </form>
+
+    <div class="bd-agenda">
+      <h3>In 30 minutes you'll see</h3>
+      <div class="bd-steps">
+        <div class="bd-step">
+          <span class="bd-num" style="background:var(--sky)">1</span>
+          <div><div class="t">The books, caught up on their own</div><div class="d">Coding and bank rec run by agents. Anything odd waits with proof attached, for a quick yes from your team.</div></div>
+          <div class="bd-mini" aria-hidden="true">
+            <div class="r">Office rent · $12,000<span class="bd-chip ok">Rent ✓</span></div>
+            <div class="r">Freight · $14,300<span class="bd-chip ok">COGS ✓</span></div>
+            <div class="r">New vendor · $242<span class="bd-chip wait">in review</span></div>
+          </div>
+        </div>
+        <div class="bd-step">
+          <span class="bd-num" style="background:var(--lilac)">2</span>
+          <div><div class="t">A client question, answered</div><div class="d">Ask in plain words, then ask why. Every number shows exactly where it came from.</div></div>
+          <div class="bd-mini" aria-hidden="true">
+            <div class="bd-q">How much cash do we have right now?</div>
+            <div class="bd-a">Runway 14.2 months<small>Sources linked to every figure</small></div>
+          </div>
+        </div>
+        <div class="bd-step">
+          <span class="bd-num" style="background:var(--peach)">3</span>
+          <div><div class="t">Month-end, ready for review</div><div class="d">The close runs in the background. Your people review, sign and advise.</div></div>
+          <div class="bd-mini" aria-hidden="true">
+            <div class="r">Bank &amp; card reconciliation<span class="bd-chip ok">done ✓</span></div>
+            <div class="r">Vendor reconciliation<span class="bd-chip ok">done ✓</span></div>
+            <div class="r">Month-end reports<span class="bd-chip wait">to sign</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="bd-self">Not ready to talk yet? <a class="link-cta" href="/demo">Try the live demo yourself →</a></div>
+    </div>
+
+    <div class="bd-form">
+      <div class="bd-card" id="bdCard">
+        <div class="bd-head">
+          <div class="ttl">Book your demo</div>
+          <div class="bd-stepper" aria-hidden="true">
+            <span class="s on" id="bdS1"><b>1</b>Your details</span><span class="line"></span><span class="s" id="bdS2"><b>2</b>Pick a time</span>
+          </div>
+        </div>
+        <div class="bd-body">
+          <form class="bd-step1" id="demoForm" action="https://formspree.io/f/mnjlvlyz" method="POST" novalidate>
+            <input type="hidden" name="_next" value="https://getpastel.ai/thanks">
+            <div class="bd-two">
+              <div><label for="bdName">Full name</label><input id="bdName" type="text" name="name" autocomplete="name" required></div>
+              <div><label for="bdEmail">Work email</label><input id="bdEmail" type="email" name="email" placeholder="you@company.com" autocomplete="email" required></div>
+            </div>
+            <span class="lbl" id="bdRoleL">You are</span>
+            <div class="bd-pills" role="radiogroup" aria-labelledby="bdRoleL">
+              <label><input type="radio" name="role" value="Accounting firm" checked><span>Accounting firm</span></label>
+              <label><input type="radio" name="role" value="CAS practice"><span>CAS practice</span></label>
+              <label><input type="radio" name="role" value="Fractional CFO"><span>Fractional CFO</span></label>
+              <label><input type="radio" name="role" value="Company finance team"><span>Company finance team</span></label>
+            </div>
+            <div class="bd-two">
+              <div><label for="bdSize" id="bdSizeL">Number of clients</label>
+                <select id="bdSize" name="size">
+                  <option>1 to 10</option><option selected>11 to 50</option><option>51 to 200</option><option>More than 200</option>
+                </select>
+              </div>
+              <div><label for="bdPain">What eats the most hours?</label>
+                <select id="bdPain" name="pain"><option>Reconciliation</option><option>Month-end close</option><option>Reporting</option><option>Client questions</option><option>Payroll</option><option>Other</option></select>
+              </div>
+            </div>
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+            <button class="btn btn-lg bd-submit" type="submit" id="bdNext">Next: pick a time →</button>
+            <p class="bd-err" id="bdErr" role="alert"></p>
+            <p class="bd-fine">Takes 20 seconds. Next, you pick a time that suits you.</p>
+          </form>
+
+          <div class="bd-step2" aria-live="polite">
+            <div class="bd-ok"><span class="tick">✓</span><div><div class="t" id="bdThanks">Thanks. Now pick a time.</div><div class="d">Choose any slot in the calendar. The calendar invite lands in your inbox straight away.</div></div></div>
+            <div class="bd-cal" id="bdCal"></div>
+            <div class="bd-after">
+              <strong style="color:var(--ink)">While you wait</strong>
+              <div class="links"><a href="/demo">Try the live demo</a><a href="/security">How we keep data safe</a><a href="/blog">Read the blog</a></div>
+              <p style="margin-top:12px">No time that works? We have your details and will email you to find one.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 <footer>
   <div class="wrap">
     <div class="f-grid">
       <div>
-        <a class="lockup" href="pastel_homepage_v5.html">
+        <a class="lockup" href="/">
           <img class="blob-svg" src="pastel-orb.png" alt="" width="34" height="34">
           <span class="wordmark" style="font-size:20px">Pastel</span>
         </a>
@@ -476,7 +625,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div>
         <h5>Product</h5>
-        <a href="pastel_platform.html">Platform</a><a href="pastel_firms.html">For accounting firms</a><a href="pastel_security.html">Security</a><a href="pastel_due_diligence.html">Due diligence</a><a href="pastel_demo.html">Book a demo</a>
+        <a href="pastel_platform.html">Platform</a><a href="/companies">For companies</a><a href="pastel_security.html">Security</a><a href="pastel_due_diligence.html">Due diligence</a><a href="pastel_demo.html">Book a demo</a>
       </div>
       <div>
         <h5>Company</h5>
@@ -510,18 +659,70 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   })();
 </script>
 <script>
+  // Book a demo: step 1 sends the details (Formspree + Pastel HQ), step 2 shows the booking calendar.
+  // Without JavaScript the form posts to Formspree and lands on /thanks, which links the calendar too.
   (function(){
+    var BOOKING = "https://calendar.app.google/5CfYQz6HukmdGVd6A";
+    // Optional: Google Calendar's "Website embed" link for this booking page (ends in ?gv=true).
+    // When set, the calendar shows inside the page instead of behind a button.
+    var BOOKING_EMBED = "";
+
     var f = document.getElementById("demoForm");
-    if(!f) return;
-    f.addEventListener("submit", function(){
+    var card = document.getElementById("bdCard");
+    if(!f || !card) return;
+    var el = f.elements;
+    var size = document.getElementById("bdSize"), sizeL = document.getElementById("bdSizeL");
+    var CLIENTS = ["1 to 10","11 to 50","51 to 200","More than 200"];
+    var PEOPLE = ["Up to 50 people","51 to 200 people","201 to 1,000 people","More than 1,000 people"];
+    function setSizes(){
+      var company = el["role"].value === "Company finance team";
+      var list = company ? PEOPLE : CLIENTS;
+      sizeL.textContent = company ? "Company size" : "Number of clients";
+      size.innerHTML = list.map(function(o, i){ return "<option" + (i === 1 ? " selected" : "") + ">" + o + "</option>"; }).join("");
+    }
+    [].forEach.call(f.querySelectorAll('input[name="role"]'), function(r){ r.addEventListener("change", setSizes); });
+
+    function showStep2(name){
+      var first = (name || "").trim().split(/\s+/)[0];
+      document.getElementById("bdThanks").textContent = (first ? "Thanks, " + first + ". " : "Thanks. ") + "Now pick a time.";
+      var cal = document.getElementById("bdCal");
+      if (BOOKING_EMBED) {
+        cal.innerHTML = '<iframe src="' + BOOKING_EMBED + '" title="Pick a time for your Pastel demo" loading="lazy"></iframe>';
+      } else {
+        cal.innerHTML = '<a class="btn btn-lg bd-calbtn" href="' + BOOKING + '" target="_blank" rel="noopener">Open the calendar and pick a time <span aria-hidden="true">↗</span></a>' +
+          '<p class="bd-fine">Opens Google Calendar in a new tab. No Google account needed.</p>';
+      }
+      card.classList.add("picked");
+      document.getElementById("bdS1").className = "s done";
+      document.getElementById("bdS2").className = "s on";
+      if (window.innerWidth < 1080) card.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    f.addEventListener("submit", function(e){
+      e.preventDefault();
+      var err = document.getElementById("bdErr");
+      var name = el["name"].value.trim(), email = el["email"].value.trim();
+      if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        err.textContent = !name ? "Please add your name." : "Please add a valid work email.";
+        err.style.display = "block";
+        (!name ? el["name"] : el["email"]).focus();
+        return;
+      }
+      err.style.display = "none";
+      var role = el["role"].value, sz = el["size"].value, pain = el["pain"].value;
       window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: "generate_lead" });
-      // Also send it to Pastel HQ (research, drafted reply, Attio). Formspree still gets it as before.
-      var el = f.elements;
-      if (window.pastelSendLead) window.pastelSendLead({ name: el["name"].value, email: el["email"].value, pain: el["pain"].value, _gotcha: el["_gotcha"].value });
+      window.dataLayer.push({ event: "generate_lead", lead_role: role });
+      // Pastel HQ: research, drafted reply, Attio.
+      if (window.pastelSendLead) window.pastelSendLead({ name: name, email: email, pain: pain, message: "Role: " + role + ". " + sizeL.textContent + ": " + sz + ".", _gotcha: el["_gotcha"].value });
+      // Formspree: the email copy, as before.
+      try {
+        fetch(f.action, { method: "POST", body: new FormData(f), headers: { Accept: "application/json" } }).catch(function(){});
+      } catch (x) {}
+      showStep2(name);
     });
   })();
 </script>
 <script src="/attribution.js" defer></script>
+<script src="/site.js" defer></script>
 </body>
 </html>
