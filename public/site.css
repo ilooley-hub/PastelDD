@@ -1,0 +1,35 @@
+/* Shared by every static page (public/*.html): the phone menu and the
+   "Book a demo" bar on phones. Loaded after each page's own styles. */
+
+.hamb{display:none;background:none;border:0;cursor:pointer;padding:8px;margin-left:auto}
+.hamb span{display:block;width:22px;height:2px;background:#101114;margin:5px 0;border-radius:2px;transition:transform .18s ease,opacity .18s ease}
+.hamb[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamb[aria-expanded="true"] span:nth-child(2){opacity:0}
+.hamb[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none}
+
+.cta-bar{display:none}
+
+/* Decorative blobs hang off the edge on purpose; never let them cause sideways scrolling. */
+html{overflow-x:clip}
+
+@media (max-width:720px){
+  .wrap{padding-left:20px;padding-right:20px}
+  nav .nav-inner{position:relative;gap:12px}
+  nav .nav-links,nav .login{display:none !important}
+  nav .btn{padding:9px 16px;font-size:13.5px;margin-left:auto}
+  .hamb{display:block;margin-left:0}
+  .mobile-menu{position:absolute;left:-20px;right:-20px;top:calc(100% + 10px);z-index:80;background:rgba(248,248,246,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(35,37,58,.08);padding:10px 20px 18px}
+  .mobile-menu.open{display:block}
+  .mobile-menu a{display:block;padding:12px 0;font-size:17px;font-weight:500;color:#101114;text-decoration:none;border-bottom:1px solid rgba(35,37,58,.06)}
+  .mobile-menu a:last-child{border-bottom:0}
+  .mobile-menu .mm-sub{padding-left:16px;font-size:15px;color:#52545C}
+
+  .cta-bar{display:flex;align-items:center;gap:12px;position:fixed;left:12px;right:12px;bottom:12px;z-index:90;padding:10px 10px 10px 16px;border-radius:14px;background:rgba(16,17,20,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 12px 32px rgba(16,17,20,.22);color:#fff;transform:translateY(140%);transition:transform .25s ease}
+  .cta-bar.show{transform:none}
+  .cta-bar .cb-text{flex:1;font-size:14px;line-height:1.3}
+  .cta-bar .cb-text small{display:block;color:rgba(255,255,255,.6);font-size:12px}
+  .cta-bar a{flex:none;background:#fff;color:#101114;text-decoration:none;font-weight:600;font-size:14px;padding:10px 16px;border-radius:9px}
+}
+
+@media (prefers-reduced-motion: reduce){.cta-bar,.hamb span{transition:none}}

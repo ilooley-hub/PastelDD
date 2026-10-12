@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 const LINKS = [
   { href: "/platform", label: "Platform" },
-  { href: "/firms", label: "For accounting firms" },
+  { href: "/companies", label: "For companies" },
   { href: "/security", label: "Security" },
   { href: "/blog", label: "Blog" },
 ]
@@ -82,7 +82,7 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
             <div>
               <h5>Product</h5>
               <Link href="/platform">Platform</Link>
-              <Link href="/firms">For accounting firms</Link>
+              <Link href="/companies">For companies</Link>
               <Link href="/security">Security</Link>
               <Link href="/due-diligence">Due diligence</Link>
               <Link href="/book-a-demo">Book a demo</Link>
