@@ -407,8 +407,9 @@
   .bd-fact{display:inline-flex;align-items:center;gap:8px;padding:7px 13px;border-radius:999px;background:rgba(255,255,255,.75);border:1px solid rgba(35,37,58,.08);font-size:13.5px;font-weight:500;color:var(--ink)}
   .bd-fact i{width:8px;height:8px;border-radius:47% 53% 55% 45%/48% 44% 56% 52%;display:inline-block}
   .bd-agenda h3{font-family:var(--head);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:40px 0 16px}
-  .bd-steps{display:grid;gap:14px}
-  .bd-step{display:grid;grid-template-columns:44px 1fr minmax(0,230px);gap:16px;align-items:center;background:rgba(255,255,255,.82);border:1px solid rgba(35,37,58,.06);border-radius:14px 14px 14px 30px;padding:16px 18px;box-shadow:var(--shadow)}
+  .bd-steps{display:grid;max-width:520px}
+  .bd-step{display:grid;grid-template-columns:40px 1fr;gap:14px;align-items:start;padding:14px 0;border-top:1px solid rgba(35,37,58,.08)}
+  .bd-step:first-child{border-top:0;padding-top:0}
   .bd-num{width:36px;height:36px;border-radius:47% 53% 55% 45%/48% 44% 56% 52%;display:grid;place-items:center;font-family:var(--head);font-weight:600;font-size:15px}
   .bd-step .t{font-family:var(--head);font-weight:600;font-size:16px;margin-bottom:3px}
   .bd-step .d{font-size:13.5px;line-height:1.5;color:var(--body)}
@@ -467,7 +468,6 @@
   @media (max-width:720px){
     .bd-intro{padding-top:0}
     .bd-intro h1{font-size:36px}
-    .bd-step{grid-template-columns:40px 1fr}
     .bd-mini{grid-column:1/-1}
     .bd-head,.bd-body{padding-left:20px;padding-right:20px}
     .bd-two{grid-template-columns:1fr}
@@ -521,11 +521,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="eyebrow">Book a demo</div>
       <h1>See Pastel <em class="hl">in action.</em></h1>
       <p class="sub">A thirty-minute live walkthrough, shaped around how your practice works today. No prep and no data needed. Just come with your questions.</p>
-      <div class="bd-facts">
-        <span class="bd-fact"><i style="background:#4FB4EE"></i>30 minutes</span>
-        <span class="bd-fact"><i style="background:#8FE3D4"></i>Live walkthrough</span>
-        <span class="bd-fact"><i style="background:#F4C9A1"></i>No data needed</span>
-      </div>
     </div>
 
     <div class="bd-agenda">
@@ -534,31 +529,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="bd-step">
           <span class="bd-num" style="background:var(--sky)">1</span>
           <div><div class="t">The books, caught up on their own</div><div class="d">Coding and bank rec run by agents. Anything odd waits with proof attached, for a quick yes from your team.</div></div>
-          <div class="bd-mini" aria-hidden="true">
-            <div class="r">Office rent · $12,000<span class="bd-chip ok">Rent ✓</span></div>
-            <div class="r">Freight · $14,300<span class="bd-chip ok">COGS ✓</span></div>
-            <div class="r">New vendor · $242<span class="bd-chip wait">in review</span></div>
-          </div>
         </div>
         <div class="bd-step">
           <span class="bd-num" style="background:var(--lilac)">2</span>
           <div><div class="t">A client question, answered</div><div class="d">Ask in plain words, then ask why. Every number shows exactly where it came from.</div></div>
-          <div class="bd-mini" aria-hidden="true">
-            <div class="bd-q">How much cash do we have right now?</div>
-            <div class="bd-a">Runway 14.2 months<small>Sources linked to every figure</small></div>
-          </div>
         </div>
         <div class="bd-step">
           <span class="bd-num" style="background:var(--peach)">3</span>
           <div><div class="t">Month-end, ready for review</div><div class="d">The close runs in the background. Your people review, sign and advise.</div></div>
-          <div class="bd-mini" aria-hidden="true">
-            <div class="r">Bank &amp; card reconciliation<span class="bd-chip ok">done ✓</span></div>
-            <div class="r">Vendor reconciliation<span class="bd-chip ok">done ✓</span></div>
-            <div class="r">Month-end reports<span class="bd-chip wait">to sign</span></div>
-          </div>
         </div>
       </div>
-      <div class="bd-self">Not ready to talk yet? <a class="link-cta" href="/demo">Try the live demo yourself →</a></div>
     </div>
 
     <div class="bd-form">
@@ -604,7 +584,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="bd-cal" id="bdCal"></div>
             <div class="bd-after">
               <strong style="color:var(--ink)">While you wait</strong>
-              <div class="links"><a href="/demo">Try the live demo</a><a href="/security">How we keep data safe</a><a href="/blog">Read the blog</a></div>
+              <div class="links"><a href="/security">How we keep data safe</a><a href="/blog">Read the blog</a></div>
               <p style="margin-top:12px">No time that works? We have your details and will email you to find one.</p>
             </div>
           </div>

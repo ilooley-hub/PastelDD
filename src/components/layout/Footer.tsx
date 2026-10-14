@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { HaloCta, DemoCta } from "@/components/ui/Buttons"
+import { HaloCta } from "@/components/ui/Buttons"
 
 const PASTEL_FOR = [
   { label: "Due diligence", href: "/due-diligence" },
@@ -10,7 +10,6 @@ const PASTEL_FOR = [
 ]
 
 const COMPANY = [
-  { label: "Live demo", href: "/demo" },
   { label: "Contact", href: "#contact" },
   { label: "Security", href: "/security" },
   { label: "hello@getpastel.ai", href: "mailto:hello@getpastel.ai" },
@@ -101,7 +100,6 @@ export function Footer() {
             </p>
             <div className="flex w-fit flex-wrap items-center gap-2.5">
               <HaloCta href="#contact">Request access</HaloCta>
-              <DemoCta variant="secondary">Live demo</DemoCta>
             </div>
           </div>
 
