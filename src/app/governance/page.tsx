@@ -3,7 +3,6 @@ import { Footer } from "@/components/layout/Footer"
 import { PageHero } from "@/components/sections/PageHero"
 import { PortfolioMonitor } from "@/components/sections/PortfolioMonitor"
 import { CtaBlock } from "@/components/sections/CtaBlock"
-import { TryDemo } from "@/components/sections/TryDemo"
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll"
 
 function Divider() {
@@ -42,7 +41,6 @@ export default function GovernancePage() {
         />
         <PortfolioMonitor />
         <Divider />
-        <TryDemo />
         <Divider />
 
         <section className="px-12 py-14">
