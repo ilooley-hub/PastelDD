@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/react"
 import "./globals.css"
 
 const GTM_ID = "GTM-NQ9S6W79"
+const APOLLO_APP_ID = "69f667e8a704d400110e746c"
 
 const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
@@ -65,6 +66,15 @@ export default function RootLayout({
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
             })(window,document,'script','dataLayer','${GTM_ID}');
+          `}
+        </Script>
+        {/* Apollo website visitor tracking: shows which companies visit, for the Warm Visitors loop. */}
+        <Script id="apollo-tracker" strategy="afterInteractive">
+          {`
+            function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");
+            o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,
+            o.onload=function(){window.trackingFunctions.onLoad({appId:"${APOLLO_APP_ID}"})},
+            document.head.appendChild(o)}initApollo();
           `}
         </Script>
       </head>
