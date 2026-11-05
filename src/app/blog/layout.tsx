@@ -96,6 +96,8 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
               <h5>Legal</h5>
               <Link href="/privacy">Privacy policy</Link>
               <Link href="/terms">Terms of service</Link>
+              {/* Reopens the cookie banner (public/consent.js). */}
+              <a href="#cookie-settings">Cookie settings</a>
             </div>
           </div>
           <div className="pb-fine">© {new Date().getFullYear()} Pastel. All rights reserved.</div>
