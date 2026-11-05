@@ -18,6 +18,8 @@ const COMPANY = [
 const LEGAL = [
   { label: "Privacy", href: "/privacy" },
   { label: "Terms", href: "/terms" },
+  // Reopens the cookie banner (public/consent.js).
+  { label: "Cookie settings", href: "#cookie-settings" },
 ]
 
 function FooterColumn({
@@ -35,7 +37,7 @@ function FooterColumn({
       <ul className="flex flex-col gap-2.5">
         {links.map((l) => {
           // /demo is served outside the Next app, so force a full-page anchor.
-          const external = l.href.startsWith("mailto:") || l.href === "/demo"
+          const external = l.href.startsWith("mailto:") || l.href === "/demo" || l.href === "#cookie-settings"
           return (
             <li key={l.label}>
               {external ? (

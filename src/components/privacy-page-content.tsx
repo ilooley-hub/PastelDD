@@ -210,10 +210,34 @@ const sections: LegalSection[] = [
     body: (
       <>
         <P>
-          We use a small number of cookies and similar technologies to keep you
-          signed in, remember your preferences, and understand aggregate usage.
-          You can control cookies through your browser settings. Disabling
-          cookies may affect the functionality of the service.
+          We use a small number of cookies and similar technologies on our
+          website. When you first visit, we ask for your permission before
+          setting anything that is not strictly necessary.
+        </P>
+        <P>
+          <strong>Strictly necessary.</strong> These make the site work and are
+          always on. They include a cookie called <code>pastel_consent</code>,
+          which remembers your cookie choice for six months. We also use Vercel
+          Web Analytics, which counts page views without cookies and without
+          identifying you.
+        </P>
+        <P>
+          <strong>Analytics and marketing (only with your permission).</strong>{" "}
+          Google Tag Manager and the tags it loads (such as Google Analytics)
+          help us understand how the site is used. Apollo.io identifies which
+          companies visit our website so we can follow up with relevant
+          businesses. We also remember, in your browser, how you first arrived
+          (for example the referring site or campaign), so a demo request shows
+          where it came from. None of these run unless you choose
+          &ldquo;Accept all&rdquo;.
+        </P>
+        <P>
+          You can change your choice at any time using the &ldquo;Cookie
+          settings&rdquo; link in the footer of every page, or{" "}
+          <a href="#cookie-settings" className="underline">
+            open cookie settings now
+          </a>
+          . You can also block or delete cookies through your browser settings.
         </P>
       </>
     ),
@@ -273,7 +297,7 @@ export function PrivacyPageContent() {
       eyebrow="Privacy"
       title="Privacy Policy"
       lead="How Pastel handles personal information, customer content, and the data you share with us through our website and platform."
-      lastUpdated="April 19, 2026"
+      lastUpdated="November 5, 2026"
       sections={sections}
     />
   )

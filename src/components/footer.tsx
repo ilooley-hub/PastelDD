@@ -86,6 +86,15 @@ export function Footer() {
                   Security
                 </Link>
               </li>
+              <li>
+                {/* Reopens the cookie banner (public/consent.js). */}
+                <a
+                  href="#cookie-settings"
+                  className="text-sm text-text-secondary transition-colors hover:text-text-primary"
+                >
+                  Cookie settings
+                </a>
+              </li>
             </ul>
           </div>
         </div>
