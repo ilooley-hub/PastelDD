@@ -20,9 +20,11 @@ const sections: LegalSection[] = [
     body: (
       <>
         <P>
-          Pastel AI Ltd. (&ldquo;Pastel,&rdquo; &ldquo;we,&rdquo; &ldquo;us&rdquo;) builds AI-powered
-          diligence and portfolio governance software for private equity firms,
-          family offices, and their portfolio companies. This policy explains
+          Pastel Ltd., a company incorporated in Delaware, United States
+          (&ldquo;Pastel,&rdquo; &ldquo;we,&rdquo; &ldquo;us&rdquo;), builds
+          AI software that runs finance work, such as bookkeeping, bills,
+          payroll, reporting and the month-end close, for accounting firms and
+          the companies they serve. This policy explains
           what information we collect when you use our website and services,
           how we use it, and the choices you have.
         </P>
@@ -97,8 +99,12 @@ const sections: LegalSection[] = [
           <li>Meet our legal, regulatory, and contractual obligations.</li>
         </UL>
         <P>
-          We do not sell personal information, and we do not use customer
-          content to train generative models.
+          We do not sell personal information for money, and we do not use
+          customer content to train generative models. Under some US state
+          laws, using analytics and marketing cookies (described under
+          &ldquo;Cookies&rdquo; below) may count as &ldquo;sharing&rdquo;
+          personal information. These run only if you choose &ldquo;Accept
+          all&rdquo;, and you can turn them off at any time.
         </P>
       </>
     ),
@@ -172,12 +178,13 @@ const sections: LegalSection[] = [
     body: (
       <>
         <P>
-          Pastel is operated from the United Kingdom and processes data in the
-          United Kingdom, the European Economic Area, and the United States.
-          When personal information is transferred across jurisdictions, we
-          rely on approved transfer mechanisms, including the UK International
-          Data Transfer Agreement and the EU Standard Contractual Clauses where
-          applicable.
+          Pastel is based in the United States. Our service providers may
+          process data in the United States, the United Kingdom, and the
+          European Economic Area. If you are in the UK or EEA, your personal
+          information will be transferred to the United States. When it is,
+          we rely on approved transfer mechanisms, such as the EU Standard
+          Contractual Clauses and the UK International Data Transfer Agreement
+          or Addendum, where applicable.
         </P>
       </>
     ),
@@ -188,18 +195,39 @@ const sections: LegalSection[] = [
     body: (
       <>
         <P>
-          Depending on your jurisdiction, you may have rights to access,
-          correct, delete, restrict, or object to our processing of your
-          personal information, as well as rights to portability and to withdraw
-          consent. To exercise these rights, email{" "}
+          Depending on where you live, you may have some or all of the
+          following rights over your personal information:
+        </P>
+        <UL>
+          <li>
+            <Strong>United States.</Strong> Residents of California and other
+            states with consumer privacy laws may have the right to know what
+            personal information we collect and how we use it; to access,
+            correct, or delete it; and to opt out of the &ldquo;sale&rdquo; or
+            &ldquo;sharing&rdquo; of personal information and of targeted
+            advertising. You can opt out of analytics and marketing cookies at
+            any time through &ldquo;Cookie settings&rdquo; in the footer. If we
+            decline your request, you may appeal by replying to our decision.
+          </li>
+          <li>
+            <Strong>United Kingdom and European Economic Area.</Strong> You may
+            have the right to access, correct, delete, restrict, or object to
+            our processing of your personal information, to data portability,
+            and to withdraw consent at any time. You may also lodge a complaint
+            with your local data protection authority.
+          </li>
+        </UL>
+        <P>
+          To exercise any of these rights, email{" "}
           <a
-            href="mailto:privacy@getpastel.ai"
+            href="mailto:ilan@getpastel.ai"
             className="text-accent hover:underline"
           >
-            privacy@getpastel.ai
+            ilan@getpastel.ai
           </a>
-          . You may also have the right to lodge a complaint with a supervisory
-          authority.
+          . We may need to verify your identity before acting on a request,
+          and you may use an authorized agent to make a request for you. We
+          will not treat you differently for exercising your rights.
         </P>
       </>
     ),
@@ -279,12 +307,12 @@ const sections: LegalSection[] = [
           If you have questions about this policy or our privacy practices,
           email{" "}
           <a
-            href="mailto:privacy@getpastel.ai"
+            href="mailto:ilan@getpastel.ai"
             className="text-accent hover:underline"
           >
-            privacy@getpastel.ai
-          </a>{" "}
-          or write to us at Pastel AI Ltd., United Kingdom.
+            ilan@getpastel.ai
+          </a>
+          . Pastel Ltd. is incorporated in Delaware, United States.
         </P>
       </>
     ),
@@ -297,7 +325,7 @@ export function PrivacyPageContent() {
       eyebrow="Privacy"
       title="Privacy Policy"
       lead="How Pastel handles personal information, customer content, and the data you share with us through our website and platform."
-      lastUpdated="November 5, 2026"
+      lastUpdated="November 6, 2026"
       sections={sections}
     />
   )
