@@ -19,7 +19,8 @@ const sections: LegalSection[] = [
         <P>
           These Terms of Service (&ldquo;Terms&rdquo;) govern your access to and
           use of the Pastel websites, applications, and services
-          (&ldquo;Services&rdquo;) provided by Pastel AI Ltd. (&ldquo;Pastel,&rdquo;
+          (&ldquo;Services&rdquo;) provided by Pastel Ltd., a company incorporated in Delaware, United
+          States (&ldquo;Pastel,&rdquo;
           &ldquo;we,&rdquo; &ldquo;us&rdquo;). By accessing or using the
           Services, you agree to be bound by these Terms and our{" "}
           <a href="/privacy" className="text-accent hover:underline">
@@ -287,9 +288,9 @@ const sections: LegalSection[] = [
     body: (
       <>
         <P>
-          These Terms are governed by the laws of England and Wales, without
-          regard to conflict-of-laws principles. The courts of England and Wales
-          will have exclusive jurisdiction over any dispute arising out of or
+          These Terms are governed by the laws of the State of Delaware, United
+          States, without regard to conflict-of-laws principles. The state and
+          federal courts located in Delaware will have exclusive jurisdiction over any dispute arising out of or
           related to these Terms, unless a different forum is required by a
           separately executed agreement.
         </P>
@@ -318,10 +319,10 @@ const sections: LegalSection[] = [
         <P>
           Questions about these Terms? Email{" "}
           <a
-            href="mailto:legal@getpastel.ai"
+            href="mailto:ilan@getpastel.ai"
             className="text-accent hover:underline"
           >
-            legal@getpastel.ai
+            ilan@getpastel.ai
           </a>
           .
         </P>
@@ -336,7 +337,7 @@ export function TermsPageContent() {
       eyebrow="Terms"
       title="Terms of Service"
       lead="The agreement that governs your access to and use of the Pastel platform, marketing site, and related services."
-      lastUpdated="April 19, 2026"
+      lastUpdated="November 6, 2026"
       sections={sections}
     />
   )

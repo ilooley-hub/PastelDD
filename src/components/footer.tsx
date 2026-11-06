@@ -102,7 +102,7 @@ export function Footer() {
         {/* Bottom row */}
         <div className="mt-16 flex flex-col gap-4 border-t border-pastel-border pt-8 sm:flex-row sm:items-center sm:justify-between">
           <span className="text-xs text-text-tertiary">
-            &copy; 2026 Pastel AI Ltd.
+            &copy; 2026 Pastel Ltd.
           </span>
           <span className="text-xs text-text-tertiary">
             getpastel.ai
